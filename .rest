@@ -5,8 +5,11 @@ POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "user_id":"Tlkiio",
-    "fishermen_id":"dl9900-",
-    "lastname": "55555555V",
-    "age": "44"
+    "user_id":"fffff",
+    "fishermen_id":"00000",
+    "lastname": "4444444444V",
+    "age": "50"
 }
+
+###
+DELETE http://localhost:5000/fishermen/fffff

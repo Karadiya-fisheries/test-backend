@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const inserttable = require("../models/insert");
 const readtable = require("../models/read");
+const deleteFishermen1 = require("../models/delete");
 
 router.get("/", async (req, res) => {
   const query = `SELECT * FROM fishermen`;
@@ -12,6 +13,7 @@ router.get("/", async (req, res) => {
   res.json(rows);
 });
 
+// create fishermen
 router.post("/", async (req, res) => {
   const text =
     "INSERT INTO fishermen(user_id ,fishermen_id ,lastname, age) VALUES($1, $2, $3, $4) RETURNING *";
@@ -49,13 +51,13 @@ router.patch("/:id", async (req, res) => {
 
 //delete a todo
 
-router.delete("/todos/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [
-      id,
-    ]);
-    res.json("Todo was deleted!");
+    const text = "DELETE FROM fishermen WHERE user_id = $1";
+    const values = [id];
+    const deletedFishermen = await deleteFishermen1(text, values);
+    res.json(deletedFishermen);
   } catch (err) {
     console.log(err.message);
   }

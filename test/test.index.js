@@ -12,10 +12,23 @@ describe("Index page test", () => {
   it("gets base url", (done) => {
     server
       .get("/fishermen")
-      .expect(404)
+      .expect(200)
       .end((err, res) => {
-        expect(res.status).to.equal(404);
-        expect(res.body.message).to.equal("<h1>Fishermen</h1>");
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal([
+          {
+            user_id: "Tharindu",
+            fishermen_id: "th@gmail.com",
+            lastname: "55555555V",
+            age: 44,
+          },
+          {
+            user_id: "Tharindu",
+            fishermen_id: "th@gmail.com",
+            lastname: "55555555V",
+            age: 44,
+          },
+        ]);
         done();
       });
   });
