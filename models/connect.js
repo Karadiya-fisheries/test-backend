@@ -1,8 +1,6 @@
-const pg = require("pg");
+const Pool = require("pg").Pool;
 
-const { Client } = require("pg");
-
-const client = new Client({
+const pool = new Pool({
   user: "postgres" || process.env.PGUSER,
   host: "localhost" || process.env.PGHOST,
   database: "testdb" || process.env.PGDATABASE,
@@ -10,9 +8,4 @@ const client = new Client({
   port: 5432 || process.env.PGPORT,
 });
 
-client.connect();
-client.once("connect", () => {
-  console.log("Database connected ");
-});
-
-module.exports = client;
+module.exports = pool;

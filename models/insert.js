@@ -1,13 +1,11 @@
-const client = require("./connect");
+const pool = require("./connect");
 
 const insert = async (text, values) => {
   try {
-    const res = await client.query(text, values);
-    console.log("Data insert successful");
+    const res = await pool.query(text, values);
+    return res;
   } catch (err) {
     console.log(err.stack);
-  } finally {
-    await client.end();
   }
 };
 

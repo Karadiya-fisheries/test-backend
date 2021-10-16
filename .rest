@@ -1,1 +1,12 @@
 GET http://localhost:5000/fishermen
+
+###
+POST http://localhost:5000/fishermen
+Content-Type: application/json
+
+{
+    "user_id":"Tlkiio",
+    "fishermen_id":"dl9900-",
+    "lastname": "55555555V",
+    "age": "44"
+}
