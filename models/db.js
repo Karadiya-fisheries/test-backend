@@ -22,11 +22,11 @@
 
 // inserttable(query);
 
-const readtable = require("./read");
+// const readtable = require("./read");
 
-const query = `
-SELECT *
-FROM users
-`;
+// const query = `
+// SELECT *
+// FROM users
+// `;
 
-readtable(query);
+// readtable(query);

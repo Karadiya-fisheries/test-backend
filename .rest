@@ -58,3 +58,22 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/boats/88888
+
+
+###
+GET http://localhost:5000/query/fishermen
+Content-Type: application/json
+
+{
+    "col1" : "age",
+    "val1" : "60"
+}
+
+###
+GET http://localhost:5000/query/boats
+Content-Type: application/json
+
+{
+    "col1" : "name",
+    "val1" : "rock"
+}
