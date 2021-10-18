@@ -26,3 +26,35 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/fishermen/fffff
+
+
+###
+GET http://localhost:5000/boats
+
+###
+POST http://localhost:5000/boats
+Content-Type: application/json
+
+{
+    "owner_id":"Tha",
+    "boat_id":"88888",
+    "name": "rock",
+    "reg_data": "2020/04/20"
+}
+
+###
+GET http://localhost:5000/boats/66666
+
+
+###
+PATCH http://localhost:5000/boats/66666
+Content-Type: application/json
+
+{
+    "owner_id":"hello",
+    "name": "paper",
+    "reg_data": "2000/5/29"
+}
+
+###
+DELETE http://localhost:5000/boats/88888
