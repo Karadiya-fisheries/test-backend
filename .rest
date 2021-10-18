@@ -5,10 +5,23 @@ POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "user_id":"fffff",
+    "user_id":"Tndu",
     "fishermen_id":"00000",
-    "lastname": "4444444444V",
+    "lastname": "4445555444V",
     "age": "50"
+}
+
+###
+GET http://localhost:5000/fishermen/Tnd
+
+###
+PATCH http://localhost:5000/fishermen/Tndu
+Content-Type: application/json
+
+{
+    "fishermen_id":"6666",
+    "lastname": "4445555V",
+    "age": "60"
 }
 
 ###

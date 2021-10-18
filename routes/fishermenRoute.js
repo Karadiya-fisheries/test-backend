@@ -3,6 +3,7 @@ const inserttable = require("../models/insert");
 const readtable = require("../models/read");
 const deletetable = require("../models/delete");
 const querytable = require("../models/query");
+const updatetable = require("../models/update");
 
 router.get("/", async (req, res) => {
   const query = `SELECT * FROM fishermen`;
@@ -33,28 +34,27 @@ router.post("/", async (req, res) => {
   }
 });
 
-//update a todo
+//update a fishermen
 
 router.patch("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { fishermen_id, lastname, age } = req.body;
+  const text =
+    "UPDATE fishermen SET fishermen_id = $1,lastname = $2,age = $3 WHERE user_id = $4 RETURNING *";
+  const values = [fishermen_id, lastname, age, id];
   try {
-    const { id } = req.params;
-    const { fishermen_id } = req.body;
-    const updateTodo = await pool.query(
-      "UPDATE todo SET description = $1 WHERE fishermen_id = $2",
-      [description, id]
-    );
-
-    res.json("Todo was updated!");
+    const updateFishermen = await updatetable(text, values);
+    res.json(updateFishermen.rows);
   } catch (err) {
     console.error(err.message);
   }
 });
 
-//delete a todo
+//delete a fishermen
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  const text = "DELETE FROM fishermen WHERE user_id = $1 Returning *";
+  const text = "DELETE FROM fishermen WHERE user_id = $1 RETURNING *";
   const values = [id];
   try {
     const deletedFishermen = await deletetable(text, values);
@@ -64,13 +64,14 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//get a todo
+//get a fishermen
 
 router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const todo = ("SELECT * FROM todo WHERE todo_id = $1", [id]);
+  const values = [req.params.id];
+  const text = "SELECT * FROM fishermen WHERE user_id = $1";
   try {
-    res.json(todo.rows[0]);
+    const result = await querytable(text, values);
+    res.json(result);
   } catch (err) {
     console.error(err.message);
   }
