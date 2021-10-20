@@ -1,16 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const fishermenroute = require("./routes/fishermenRoute");
-const boatRoute = require("./routes/boatRoute");
-const queryRoute = require("./routes/queryRoute");
-
+const passport = require("passport");
+const session = require("express-session");
+const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/fishermen", fishermenroute);
-app.use("/boats", boatRoute);
-app.use("/query", queryRoute);
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+app.use(session({ secret: "secret", saveUninitialized: false, resave: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+const db = require("./models");
+const Role = db.role;
 
 module.exports = app.listen(process.env.PORT || 5000, () => {
   console.log("Server started on http://localhost:5000");
