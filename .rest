@@ -65,8 +65,8 @@ GET http://localhost:5000/query/fishermen
 Content-Type: application/json
 
 {
-    "col1" : "age",
-    "val1" : "60"
+    "col1" : "user_id",
+    "val1" : "Tndu"
 }
 
 ###
@@ -76,4 +76,25 @@ Content-Type: application/json
 {
     "col1" : "name",
     "val1" : "rock"
+}
+
+###
+POST http://localhost:5000/signup
+Content-Type: application/json
+
+{
+    "fullname" : "Kavishka" ,
+    "email" : "k@gmail.com",
+    "phone" : "05888888",
+    "nic" : "99999V",
+    "pass" : "tharindu"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email" : "t@gmail.com",
+    "pass" : "tharindu"
 }
