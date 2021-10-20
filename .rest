@@ -79,22 +79,32 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/signup
+POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "Kavishka" ,
-    "email" : "k@gmail.com",
+    "fullname" : "Tharindu" ,
+    "email" : "t@gmail.com",
     "phone" : "05888888",
-    "nic" : "99999V",
-    "pass" : "tharindu"
+    "password" : "kavishka",
+    "roles" : ["user", "moderator"]
 }
 
 ###
-POST http://localhost:5000/login
+POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "t@gmail.com",
-    "pass" : "tharindu"
+    "email" : "k@gmail.com",
+    "password" : "tharindu"
 }
+
+###
+GET http://localhost:5000/api/test/user
+HEAD : x-access-token :"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkthdmlzaGthIiwiaWF0IjoxNjM0NzQ0Nzk2LCJleHAiOjE2MzQ4MzExOTZ9.PNa2ESw-0L8H2yV8SAHPY0LyuH5EPneSz_nZHvxTNfg"
+###
+GET http://localhost:5000/api/test/user
+###
+GET http://localhost:5000/api/test/mod
+###
+GET http://localhost:5000/api/test/admin

@@ -19,26 +19,33 @@ verifyToken = (req, res, next) => {
       });
     }
     req.userId = decoded.id;
+    console.log(req.userId);
+    console.log(req.userId);
+    console.log(req.userId);
     next();
   });
 };
 
 isAdmin = (req, res, next) => {
-  User.findByPk(req.userId).then((user) => {
-    user.getRoles().then((roles) => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") {
-          next();
-          return;
+  User.findByPk(req.userId)
+    .then((user) => {
+      user.getRoles().then((roles) => {
+        for (let i = 0; i < roles.length; i++) {
+          if (roles[i].name === "admin") {
+            next();
+            return;
+          }
         }
-      }
 
-      res.status(403).send({
-        message: "Require Admin Role!",
+        res.status(403).send({
+          message: "Require Admin Role!",
+        });
+        return;
       });
-      return;
+    })
+    .catch((err) => {
+      res.status(444).json({ message: err });
     });
-  });
 };
 
 isModerator = (req, res, next) => {
@@ -60,23 +67,28 @@ isModerator = (req, res, next) => {
 
 isModeratorOrAdmin = (req, res, next) => {
   User.findByPk(req.userId).then((user) => {
-    user.getRoles().then((roles) => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator") {
-          next();
-          return;
+    user
+      .getRoles()
+      .then((roles) => {
+        for (let i = 0; i < roles.length; i++) {
+          if (roles[i].name === "moderator") {
+            next();
+            return;
+          }
+
+          if (roles[i].name === "admin") {
+            next();
+            return;
+          }
         }
 
-        if (roles[i].name === "admin") {
-          next();
-          return;
-        }
-      }
-
-      res.status(403).send({
-        message: "Require Moderator or Admin Role!",
+        res.status(403).send({
+          message: "Require Moderator or Admin Role!",
+        });
+      })
+      .catch((err) => {
+        res.status(444).json({ message: err });
       });
-    });
   });
 };
 

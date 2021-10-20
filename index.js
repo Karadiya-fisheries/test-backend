@@ -17,7 +17,10 @@ app.use(passport.session());
 app.use(flash());
 
 const db = require("./models");
-const Role = db.role;
+db.sequelize.sync();
+
+require("./routes/auth.routes")(app);
+require("./routes/user.routes")(app);
 
 module.exports = app.listen(process.env.PORT || 5000, () => {
   console.log("Server started on http://localhost:5000");
