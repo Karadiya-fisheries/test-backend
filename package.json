@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "^14"
+  },
   "scripts": {
     "devstart": "nodemon index.js",
     "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha"

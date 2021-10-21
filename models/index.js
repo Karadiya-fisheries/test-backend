@@ -17,6 +17,9 @@ const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(config.connectionString, {
   dialect: config.dialect,
+  dialectOptions: {
+    ssl: true,
+  },
 });
 
 const db = {};
@@ -27,14 +30,6 @@ db.sequelize = sequelize;
 db.user = require("./user.model.js")(sequelize, Sequelize, DataTypes);
 db.role = require("./role.model.js")(sequelize, DataTypes);
 
-db.user.Sync().then(() => {
-  return db.user.create({
-    fullname: "req.body.fullname",
-    email: "req.body.email",
-    phone: "req.body.phone",
-    password: "bcrypt.hashSync(req.body.password, 8)",
-  });
-});
 db.role.belongsToMany(db.user, {
   through: "user_roles",
   foreignKey: "roleId",
