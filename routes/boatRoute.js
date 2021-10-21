@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const inserttable = require("../models/insert");
-const readtable = require("../models/read");
-const deletetable = require("../models/delete");
-const querytable = require("../models/query");
-const updatetable = require("../models/update");
+const inserttable = require("../models/models1/insert");
+const readtable = require("../models/models1/read");
+const deletetable = require("../models/models1/delete");
+const querytable = require("../models/models1/query");
+const updatetable = require("../models/models1/update");
 
 router.get("/", async (req, res) => {
   const query = `SELECT * FROM boat`;
