@@ -1,47 +1,41 @@
 const router = require("express").Router();
 const db = require("../models");
-const Fishermen = db.fishermen;
+const Catch = db.catch;
 
 router.get("/", async (req, res) => {
-  Fishermen.findAll()
-    .then((fishermen) => {
-      res.json(fishermen);
+  Catch.findAll()
+    .then((record) => {
+      res.json(record);
     })
     .catch((error) => {
       res.status(400).json("message :" + error);
     });
 });
 
-// create fishermen
+// create catch
 router.post("/", (req, res) => {
-  Fishermen.create({
-    fullname: req.body.fullname,
-    address: req.body.address,
-    age: req.body.age,
-    nic: req.body.nic,
-    role: req.body.role,
+  Catch.create({
+    name: req.body.name,
+    FishermenID: req.body.ownerID,
   })
-    .then((newfishermen) => {
-      res.status(201).json(newfishermen);
+    .then((newboat) => {
+      res.status(201).json(newboat);
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });
     });
 });
 
-//update a fishermen
+//update a catch
 
 router.patch("/:id", async (req, res) => {
-  Fishermen.findByPk(req.params.id)
-    .then((fishermen) => {
-      fishermen.fullname = req.body.fullname;
-      fishermen.address = req.body.address;
-      fishermen.age = req.body.age;
-      fishermen.nic = req.body.nic;
-      fishermen.role = req.body.role;
+  Catch.findByPk(req.params.id)
+    .then((record) => {
+      record.name = req.body.name;
+      record.FishermenID = req.body.ownerID;
 
-      fishermen.save().then((updateFishermen) => {
-        res.json(updateFishermen);
+      record.save().then((updatecatch) => {
+        res.json(updatecatch);
       });
     })
     .catch((err) => {
@@ -49,28 +43,28 @@ router.patch("/:id", async (req, res) => {
     });
 });
 
-//delete a fishermen
+//delete a catch
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedFishermen = await Fishermen.destroy({
+    const deletedboat = await Catch.destroy({
       where: {
         fishermenId: id,
       },
     });
-    res.status(201).json(deletedFishermen);
+    res.status(201).json(deletedboat);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
 
-//get a fishermen
+//get a catch
 
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const result = await Fishermen.findByPk(id);
+    const result = await Catch.findByPk(id);
     res.json(result);
   } catch (err) {
     res.status(400).json({ message: err.message });

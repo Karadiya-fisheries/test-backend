@@ -6,6 +6,7 @@ const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
 const fishermenRoute = require("./routes/fishermenRoute");
 const boatRoute = require("./routes/boatRoute");
+const catchRoute = require("./routes/catch.routes");
 const app = express();
 
 app.use(cors());
@@ -19,12 +20,12 @@ app.use(passport.session());
 app.use(flash());
 
 const db = require("./models");
-const Role = db.role;
 
 db.sequelize.sync();
 
 app.use("/fishermen", fishermenRoute);
-app.use("/boat", boatRoute);
+app.use("/boats", boatRoute);
+app.use("/catches", catchRoute);
 
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);

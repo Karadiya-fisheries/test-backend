@@ -5,27 +5,30 @@ POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "user_id":"Tndu",
-    "fishermen_id":"00000",
-    "lastname": "4445555444V",
-    "age": "50"
+    "fullname": "Ravindu",
+    "address": "matara",
+    "age": "56",
+    "nic": "000",
+    "role": "fishermen"
 }
 
 ###
-GET http://localhost:5000/fishermen/Tnd
+GET http://localhost:5000/fishermen/3
 
 ###
-PATCH http://localhost:5000/fishermen/Tndu
+PATCH http://localhost:5000/fishermen/2
 Content-Type: application/json
 
 {
-    "fishermen_id":"6666",
-    "lastname": "4445555V",
-    "age": "60"
+    "fullname": "Ravindu",
+    "address": "matara",
+    "age": "60",
+    "nic": "000",
+    "role": "fishermen"
 }
 
 ###
-DELETE http://localhost:5000/fishermen/fffff
+DELETE http://localhost:5000/fishermen/3
 
 
 ###
@@ -36,10 +39,9 @@ POST http://localhost:5000/boats
 Content-Type: application/json
 
 {
-    "owner_id":"Tha",
-    "boat_id":"88888",
-    "name": "rock",
-    "reg_data": "2020/04/20"
+    "name": "paper",
+    "ownerID": 1
+    
 }
 
 ###
@@ -99,12 +101,3 @@ Content-Type: application/json
     "password" : "tharindu"
 }
 
-###
-GET http://localhost:5000/api/test/user
-HEAD : x-access-token :"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkthdmlzaGthIiwiaWF0IjoxNjM0NzQ0Nzk2LCJleHAiOjE2MzQ4MzExOTZ9.PNa2ESw-0L8H2yV8SAHPY0LyuH5EPneSz_nZHvxTNfg"
-###
-GET http://localhost:5000/api/test/user
-###
-GET http://localhost:5000/api/test/mod
-###
-GET http://localhost:5000/api/test/admin
