@@ -50,7 +50,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const deletedboat = await Boat.destroy({
       where: {
-        fishermenId: id,
+        id: id,
       },
     });
     res.status(201).json(deletedboat);
