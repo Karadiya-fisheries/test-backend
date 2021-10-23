@@ -45,21 +45,20 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/boats/66666
+GET http://localhost:5000/boats/1
 
 
 ###
-PATCH http://localhost:5000/boats/66666
+PATCH http://localhost:5000/boats/1
 Content-Type: application/json
 
 {
-    "owner_id":"hello",
     "name": "paper",
-    "reg_data": "2000/5/29"
+    "ownerID": 2
 }
 
 ###
-DELETE http://localhost:5000/boats/88888
+DELETE http://localhost:5000/boats/1
 
 
 ###
