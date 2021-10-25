@@ -29,7 +29,17 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/fishermen/3
+###
+POST http://localhost:5000/fishermen
+Content-Type: application/json
 
+{
+    "fullname": "Ravindu",
+    "address": "matara",
+    "age": "56",
+    "nic": "000",
+    "role": "fishermen"
+}
 
 ###
 GET http://localhost:5000/boats
@@ -84,11 +94,11 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "Tharindu" ,
-    "email" : "t@gmail.com",
+    "fullname" : "Owner" ,
+    "email" : "owner@gmail.com",
     "phone" : "05888888",
-    "password" : "kavishka",
-    "roles" : ["user", "moderator"]
+    "password" : "ownerr",
+    "roles" : ["moderator"]
 }
 
 ###
@@ -99,4 +109,3 @@ Content-Type: application/json
     "email" : "k@gmail.com",
     "password" : "tharindu"
 }
-

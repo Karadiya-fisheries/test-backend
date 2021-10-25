@@ -15,8 +15,12 @@ router.get("/", async (req, res) => {
 // create catch
 router.post("/", (req, res) => {
   Catch.create({
-    name: req.body.name,
-    FishermenID: req.body.ownerID,
+    departurePort: req.body.port,
+    Date: req.body.date,
+    fishType: req.body.type,
+    skipperID: req.body.skipper,
+    vesselID: req.body.boatId,
+    harvest: req.body.harvest,
   })
     .then((newboat) => {
       res.status(201).json(newboat);

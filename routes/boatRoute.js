@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 const Boat = db.boat;
-
+const Fishermen = db.fishermen;
 router.get("/", async (req, res) => {
   Boat.findAll()
     .then((boat) => {
@@ -50,7 +50,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const deletedboat = await Boat.destroy({
       where: {
-        id: id,
+        boatId: id,
       },
     });
     res.status(201).json(deletedboat);
