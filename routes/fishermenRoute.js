@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
 // create fishermen
 router.post("/", (req, res) => {
   Fishermen.create({
+    uid: req.body.uid,
     fullname: req.body.fullname,
     address: req.body.address,
     age: req.body.age,
@@ -34,7 +35,7 @@ router.post("/", (req, res) => {
 router.patch("/:id", async (req, res) => {
   Fishermen.findByPk(req.params.id)
     .then((fishermen) => {
-      fishermen.fullname = req.body.fullname;
+      fishermen.uid = req.body.uid;
       fishermen.address = req.body.address;
       fishermen.age = req.body.age;
       fishermen.nic = req.body.nic;
@@ -71,6 +72,20 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const result = await Fishermen.findByPk(id);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+router.get("/get/:uid", async (req, res) => {
+  const uid = req.params.uid;
+  try {
+    const result = await Fishermen.findOne({
+      where: {
+        uid: uid,
+      },
+    });
     res.json(result);
   } catch (err) {
     res.status(400).json({ message: err.message });

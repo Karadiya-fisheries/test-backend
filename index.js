@@ -20,6 +20,7 @@ app.use(passport.session());
 app.use(flash());
 
 const db = require("./models");
+const Role = db.role;
 
 db.sequelize.sync();
 

@@ -64,7 +64,7 @@ exports.signin = (req, res) => {
         });
       }
 
-      var token = jwt.sign({ id: user.fullname }, config.secret, {
+      var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400, // 24 hours
       });
 
@@ -74,6 +74,7 @@ exports.signin = (req, res) => {
           authorities.push("ROLE_" + roles[i].name.toUpperCase());
         }
         res.status(200).send({
+          uid: user.uid,
           phone: user.phone,
           fullname: user.fullname,
           email: user.email,
