@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
     });
 });
 
-//update a catch
+//update a
 
 router.patch("/:id", async (req, res) => {
   Catch.findByPk(req.params.id)
