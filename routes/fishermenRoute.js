@@ -35,7 +35,7 @@ router.post("/", (req, res) => {
 router.patch("/:id", async (req, res) => {
   Fishermen.findByPk(req.params.id)
     .then((fishermen) => {
-      fishermen.uid = req.body.uid;
+      fishermen.userUid = req.body.uid;
       fishermen.address = req.body.address;
       fishermen.age = req.body.age;
       fishermen.nic = req.body.nic;

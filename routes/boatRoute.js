@@ -2,6 +2,7 @@ const router = require("express").Router();
 const db = require("../models");
 const Boat = db.boat;
 const Fishermen = db.fishermen;
+
 router.get("/", async (req, res) => {
   Boat.findAll()
     .then((boat) => {
@@ -14,9 +15,15 @@ router.get("/", async (req, res) => {
 
 // create boat
 router.post("/", (req, res) => {
+  const owner_id = req.body.owner_id;
+  Fishermen.findOne({
+    where: {
+      fishermen,
+    },
+  });
   Boat.create({
     name: req.body.name,
-    FishermenID: req.body.ownerID,
+    FishermenID: req.body.owner_id,
   })
     .then((newboat) => {
       res.status(201).json(newboat);

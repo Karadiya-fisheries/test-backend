@@ -3,29 +3,29 @@ const { DataTypes } = require("sequelize");
 const Sequelize = require("sequelize");
 const { DB } = require("../config/db.config.js");
 
-// const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
-//   host: config.HOST,
-//   dialect: config.dialect,
-//   operatorsAliases: false,
+const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
+  host: config.HOST,
+  dialect: config.dialect,
+  operatorsAliases: false,
 
-//   pool: {
-//     max: config.pool.max,
-//     min: config.pool.min,
-//     acquire: config.pool.acquire,
-//     idle: config.pool.idle,
-//   },
-// });
-
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  ssl: true,
-  dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
+  pool: {
+    max: config.pool.max,
+    min: config.pool.min,
+    acquire: config.pool.acquire,
+    idle: config.pool.idle,
   },
 });
+
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//   ssl: true,
+//   dialect: "postgres",
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false,
+//     },
+//   },
+// });
 
 const db = {};
 
@@ -53,17 +53,22 @@ db.user.hasOne(db.fishermen, {
   foreignKey: "uid",
 });
 
-db.fishermen.hasOne(db.boat, {
+db.fishermen.belongsTo(db.user, {
+  foreignKey: "uid",
+});
+
+db.fishermen.hasMany(db.boat, {
   foreignKey: "FishermenID",
 });
 
-db.fishermen.hasOne(db.catch, {
-  foreignKey: "skipperID",
+db.boat.belongsTo(db.fishermen, {
+  foreignKey: "FishermenID",
 });
 
-db.boat.hasOne(db.catch, {
-  foreignKey: "vesselID",
-});
+db.catch.belongsTo(db.boat);
+db.fishermen.hasMany(db.catch);
+db.catch.belongsTo(db.fishermen);
+db.boat.hasMany(db.catch);
 
 db.ROLES = ["user", "admin", "moderator"];
 
