@@ -52,6 +52,12 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
 
+      if (user.confirm) {
+        return res
+          .status(404)
+          .send({ message: "Please Confirm email before login" });
+      }
+
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
         user.password
