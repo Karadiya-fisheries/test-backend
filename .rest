@@ -105,11 +105,23 @@ Content-Type: application/json
     "roles" : ["user","admin"]
 }
 
+
+###
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "fullname" : "admin" ,
+    "email" : "gyvita@norwegischlernen.info",
+    "phone" : "05888888",
+    "password" : "adminn",
+    "roles" : ["user","admin"]
+}
 ###
 POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "k@gmail.com",
-    "password" : "tharindu"
+    "email" : "gyvita@norwegischlernen.info",
+    "password" : "adminn"
 }

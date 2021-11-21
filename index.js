@@ -24,6 +24,9 @@ const { initialize } = require("passport");
 const Role = db.role;
 
 db.sequelize.sync();
+//({ force: true }).then(() => {
+//   initial();
+// });
 
 // function initial() {
 //   Role.create({

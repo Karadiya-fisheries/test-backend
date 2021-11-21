@@ -1,5 +1,9 @@
 const { verifySignUp } = require("../middleware");
 const controller = require("../controllers/auth.controller");
+const config = require("../config/auth.config");
+const jwt = require("jsonwebtoken");
+const db = require("../models");
+const User = db.user;
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -20,4 +24,30 @@ module.exports = function (app) {
   );
 
   app.post("/api/auth/signin", controller.signin);
+
+  app.get("/confirmation/:token", async (req, res) => {
+    try {
+      jwt.verify(req.params.token, config.email_secret, (err, decoded) => {
+        if (err) {
+          console.log(err);
+        }
+        const id = decoded.id;
+
+        User.update({ confirm: true }, { where: { uid: id } })
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(304).json({ message: err });
+          });
+      });
+
+      res.redirect("http://localhost:3000/login");
+      res.end();
+    } catch (e) {
+      console.log(e);
+      res.status(404).json({ error: e });
+    }
+  });
 };
