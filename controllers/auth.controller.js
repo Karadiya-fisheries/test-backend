@@ -29,14 +29,18 @@ exports.signup = (req, res) => {
           expiresIn: "1d",
         },
         (err, emailToken) => {
-          const url = `http://localhost:5000/confirmation/${emailToken}`;
+          const url = `https://serene-woodland-83390.herokuapp.com/confirmation/${emailToken}`;
 
           config.transporter.sendMail(
             {
               from: "7tharindugalle@gmail.com",
               to: user.email,
-              subject: "Confirm Email",
-              html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
+              subject: "Confirm Email - Karadiya",
+              html: `
+              <h2>E-Mail account confirmation</h2>
+              <p>This email was sent because you signed up for Karadya fisheires. Before you signed in, you need to confirm the email address you 've given us in your registration</p>
+              Please click this link to confirm your email: <a href="${url}">${url}</a>
+              `,
             },
             (error, info) => {
               if (error) {
