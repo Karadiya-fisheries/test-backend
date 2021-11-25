@@ -7,9 +7,12 @@ const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
+const { user } = require("../models");
 
 exports.signup = (req, res) => {
   // Save User to Database
+  // async email
+
   User.create({
     fullname: req.body.fullname,
     email: req.body.email,
@@ -17,6 +20,37 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8),
   })
     .then((user) => {
+      jwt.sign(
+        {
+          id: user.uid,
+        },
+        config.email_secret,
+        {
+          expiresIn: "1d",
+        },
+        (err, emailToken) => {
+          const url = `https://serene-woodland-83390.herokuapp.com/confirmation/${emailToken}`;
+
+          config.transporter.sendMail(
+            {
+              from: "7tharindugalle@gmail.com",
+              to: user.email,
+              subject: "Confirm Email - Karadiya",
+              html: `
+              <h2>E-Mail account confirmation</h2>
+              <p>This email was sent because you signed up for Karadya fisheires. Before you signed in, you need to confirm the email address you 've given us in your registration</p>
+              Please click this link to confirm your email: <a href="${url}">${url}</a>
+              `,
+            },
+            (error, info) => {
+              if (error) {
+                return console.log(error);
+              }
+              console.log("Message %s sent: %s", info.messageId, info.response);
+            }
+          );
+        }
+      );
       if (req.body.roles) {
         Role.findAll({
           where: {
@@ -50,6 +84,12 @@ exports.signin = (req, res) => {
     .then((user) => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
+      }
+
+      if (!user.confirm) {
+        return res
+          .status(404)
+          .send({ message: "Please Confirm email before login" });
       }
 
       var passwordIsValid = bcrypt.compareSync(

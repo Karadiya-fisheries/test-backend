@@ -44,6 +44,10 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/boats
 
+
+###
+GET http://localhost:5000/boats/all
+
 ###
 POST http://localhost:5000/boats
 Content-Type: application/json
@@ -94,18 +98,30 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "Owner" ,
-    "email" : "owner@gmail.com",
+    "fullname" : "admin" ,
+    "email" : "admin@gmail.com",
     "phone" : "05888888",
-    "password" : "ownerr",
-    "roles" : ["moderator"]
+    "password" : "adminn",
+    "roles" : ["user","admin"]
 }
 
+
+###
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "fullname" : "admin" ,
+    "email" : "gyvita@norwegischlernen.info",
+    "phone" : "05888888",
+    "password" : "adminn",
+    "roles" : ["user","admin"]
+}
 ###
 POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "k@gmail.com",
-    "password" : "tharindu"
+    "email" : "gyvita@norwegischlernen.info",
+    "password" : "adminn"
 }
