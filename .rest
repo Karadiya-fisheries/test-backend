@@ -125,3 +125,36 @@ Content-Type: application/json
     "email" : "gyvita@norwegischlernen.info",
     "password" : "adminn"
 }
+###
+###
+GET http://localhost:5000/departure
+###
+
+POST http://localhost:5000/departure
+Content-Type: application/json
+
+{   "imulNumber":"004",
+    "fullName": "kamal perere",
+    "phone": "07aa45178",
+    "email": "amkmalal@gmail.com"
+  
+    
+}
+
+###
+PATCH http://localhost:5000/departure/2
+Content-Type: application/json
+
+{   "imulNumber":"002",
+    "fullName": "JAGATH perere",
+    "phone": "07018835544",
+    "email": "JAGATH@gmail.com"
+}
+###
+GET http://localhost:5000/departure/2
+
+###
+DELETE http://localhost:5000/departure/2
+
+
+###
