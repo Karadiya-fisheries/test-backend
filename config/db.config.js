@@ -2,7 +2,7 @@ module.exports = {
   PORT: 5432 || process.env.PGPORT,
   HOST: "localhost" || process.env.PGHOST,
   USER: "postgres" || process.env.PGUSER,
-  PASSWORD: "imalsha123" || process.env.PGPASSWORD,
+  PASSWORD: "testdb" || process.env.PGPASSWORD,
   DB: "testdb" || process.env.PGDATABASE,
   connectionString: process.env.DATABASE_URL,
   ssl: {

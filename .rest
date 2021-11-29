@@ -112,7 +112,7 @@ Content-Type: application/json
 
 {
     "fullname" : "admin" ,
-    "email" : "gyvita@norwegischlernen.info",
+    "email" : "depyrywy@onekisspresave.com",
     "phone" : "05888888",
     "password" : "adminn",
     "roles" : ["user","admin"]
@@ -122,7 +122,7 @@ POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "gyvita@norwegischlernen.info",
+    "email" : "depyrywy@onekisspresave.com",
     "password" : "adminn"
 }
 ###
@@ -142,7 +142,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:5000/departure/2
+PATCH http://localhost:5000/departure/1
 Content-Type: application/json
 
 {   "imulNumber":"002",
@@ -151,7 +151,7 @@ Content-Type: application/json
     "email": "JAGATH@gmail.com"
 }
 ###
-GET http://localhost:5000/departure/2
+GET http://localhost:5000/departure/1
 
 ###
 DELETE http://localhost:5000/departure/2

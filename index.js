@@ -27,18 +27,18 @@ db.sequelize.sync();
 // ({ force: true }).then(() => {
 //     initial();
 //   });
-  
+
 //   function initial() {
 //     Role.create({
 //       id: 1,
 //       name: "user",
 //     });
-  
+
 //     Role.create({
 //       id: 2,
 //       name: "moderator",
 //     });
-  
+
 //     Role.create({
 //       id: 3,
 //       name: "admin",
@@ -48,11 +48,11 @@ db.sequelize.sync();
 app.use("/fishermen", fishermenRoute);
 app.use("/boats", boatRoute);
 app.use("/catches", catchRoute);
-app.use("/departure",departureRoute);
+app.use("/departure", departureRoute);
 
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 
-module.exports = app.listen(process.env.PORT || 4000, () => {
+module.exports = app.listen(process.env.PORT || 5000, () => {
   console.log("Server started on http://localhost:5000");
 });
