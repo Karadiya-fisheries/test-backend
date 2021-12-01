@@ -158,3 +158,37 @@ DELETE http://localhost:5000/departure/2
 
 
 ###
+
+
+
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "fullname" : "admin" ,
+    "email" : "admin@gmail.com",
+    "phone" : "05888888",
+    "password" : "adminn",
+    "roles" : ["user","admin"]
+}
+
+
+###
+POST https://serene-woodland-83390.herokuapp.com/api/auth/signup
+Content-Type: application/json
+
+{
+    "fullname" : "officer" ,
+    "email" : "zyliwexi@ryteto.me",
+    "phone" : "05888888",
+    "password" : "officer",
+    "roles" : ["user","admin"]
+}
+###
+POST https://serene-woodland-83390.herokuapp.com/api/auth/signin
+Content-Type: application/json
+
+{
+    "email" : "zyliwexi@ryteto.me",
+    "password" : "adminn"
+}
