@@ -111,10 +111,10 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "admin" ,
-    "email" : "depyrywy@onekisspresave.com",
+    "fullname" : "officer" ,
+    "email" : "zyliwexi@ryteto.me",
     "phone" : "05888888",
-    "password" : "adminn",
+    "password" : "officer",
     "roles" : ["user","admin"]
 }
 ###
@@ -122,7 +122,7 @@ POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "depyrywy@onekisspresave.com",
+    "email" : "zyliwexi@ryteto.me",
     "password" : "adminn"
 }
 ###

@@ -29,7 +29,7 @@ exports.signup = (req, res) => {
           expiresIn: "1d",
         },
         (err, emailToken) => {
-          const url = `http://localhost:5000/confirmation/${emailToken}`;
+          const url = `https://serene-woodland-83390.herokuapp.com/confirmation/${emailToken}`;
 
           config.transporter.sendMail(
             {
