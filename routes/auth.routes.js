@@ -50,4 +50,17 @@ module.exports = function (app) {
       res.status(404).json({ error: e });
     }
   });
+
+  app.post("/api/auth/forgot-password",controller.forgot_password)
+
+  app.get("/reset-password/", async (req, res) => {
+    try {
+      console.log(req.body.password)
+      res.end();
+    } catch (e) {
+      console.log(e);
+      res.status(404).json({ error: e });
+    }
+  });
 };
+

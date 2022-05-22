@@ -7,7 +7,6 @@ const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
-const { user } = require("../models");
 
 exports.signup = (req, res) => {
   // Save User to Database
@@ -126,4 +125,113 @@ exports.signin = (req, res) => {
     .catch((err) => {
       res.status(500).send({ message: err.message });
     });
+};
+
+exports.forgot_password = (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    },
+  }).then((user) => {
+    if (!user || !user.confirm) {
+      config.transporter.sendMail(
+        {
+          from: "7tharindugalle@gmail.com",
+          to: req.body.email,
+          subject: "Forgot Password - Karadiya",
+          html: `
+          <html>
+          <head>
+            <style>
+            body {background-color: #DBDFFD;}
+              p {font-family: "tahoma";}
+              h2 {font-family: "Helvetica"}
+              b {color: #242F9B}
+            </style>
+          </head>
+          <body>
+
+          <h2>Forgot Password</h2>
+                    <p>You (or someone else) entered this email address when trying to change the password of <b>A Karadiya Account</b>. </p>
+                    <p>However, email address is <b>not</b> on our database of registered or email confirmed users and therefore the attempted password change has failed. </p>
+                    <p>If you are A Karadiya User, Please try again using the same email address you gave when opening your account.</p>
+                    <p>If you are <b>not</b> A Karadiya User, Please ignore this email.</p>
+                    <hr>
+                    <p>If you have any further inquiries, Please inform us!</p>
+
+          </body>
+          </html>
+          `,
+        },
+        (error, info) => {
+          if (error) {
+            return console.log(error);
+          }
+          console.log("Message %s sent: %s", info.messageId, info.response);
+        }
+      );
+      return res
+          .status(404)
+          .send({ message: "Email is not recognized on database" });
+    }
+
+    jwt.sign(
+      {
+        id: user.uid,
+      },
+      config.email_secret,
+      {
+        expiresIn: "1d",
+      },
+      (err, emailToken) => {
+        const url = `http://localhost:5000/reset-password/${emailToken}`;
+
+        config.transporter.sendMail(
+          {
+            from: "7tharindugalle@gmail.com",
+            to: user.email,
+            subject: "Forgot Password - Karadiya",
+            html: `
+            <html>
+            <head>
+              <style>
+              body {background-color: #DBDFFD;}
+                p ,li {font-family: "tahoma";}
+                h2 {font-family: "Helvetica"}
+                b {color: #242F9B}
+              </style>
+            </head>
+            <body>
+
+            <h2>Reset Password</h2>
+                      <p>We've sent this message because you requested that your Karadiya Account password be rest. To get back into your Karadiya Account you'll need to create <b>a new password</b>. </p>
+                                <p>Here's how you do that: </p>
+                                <ol>
+                                <li>Click the link below to open a new browser window.</li>
+                                <li>Enter the requested information and follow the instructions to reset your password.</li></ol>
+                                <hr>
+                                <p>Reset your password now:</p>
+                                <a href="${url}">${url}</a>
+                                <p>If you have any further inquiries, Please inform us!</p>
+
+            </body>
+            </html>
+            `,
+          },
+          (error, info) => {
+            if (error) {
+              return console.log(error);
+            }
+            console.log("Message %s sent: %s", info.messageId, info.response);
+          }
+          
+        );
+
+        res.status(200).send({ message: "Email Sent" });
+      }
+    );
+
+  }).catch((err) => {
+    res.status(500).send({ message: err.message });
+  });
 };
