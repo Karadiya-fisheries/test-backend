@@ -111,10 +111,10 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "admin" ,
-    "email" : "depyrywy@onekisspresave.com",
+    "fullname" : "owner" ,
+    "email" : "zyliwexi@ryteto.me",
     "phone" : "05888888",
-    "password" : "adminn",
+    "password" : "owner",
     "roles" : ["user","admin"]
 }
 ###
@@ -122,7 +122,7 @@ POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "depyrywy@onekisspresave.com",
+    "email" : "zyliwexi@ryteto.me",
     "password" : "adminn"
 }
 ###
@@ -158,3 +158,37 @@ DELETE http://localhost:5000/departure/2
 
 
 ###
+
+
+
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "fullname" : "admin" ,
+    "email" : "admin@gmail.com",
+    "phone" : "05888888",
+    "password" : "adminn",
+    "roles" : ["user","admin"]
+}
+
+
+###
+POST https://serene-woodland-83390.herokuapp.com/api/auth/signup
+Content-Type: application/json
+
+{
+    "fullname" : "owner" ,
+    "email" : "kylypylo@acrossgracealley.com",
+    "phone" : "05888888",
+    "password" : "ownerr",
+    "roles" : ["user","moderator"]
+}
+###
+POST https://serene-woodland-83390.herokuapp.com/api/auth/signin
+Content-Type: application/json
+
+{
+    "email" : "zyliwexi@ryteto.me",
+    "password" : "officer"
+}

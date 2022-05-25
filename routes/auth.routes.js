@@ -50,4 +50,9 @@ module.exports = function (app) {
       res.status(404).json({ error: e });
     }
   });
+
+  app.post("/api/auth/forgot-password",controller.forgot_password);
+
+  app.post("/api/auth/reset-password/:token", controller.reset_password);
 };
+
