@@ -184,7 +184,7 @@ exports.forgot_password = (req, res) => {
         expiresIn: "1d",
       },
       (err, emailToken) => {
-        const url = `http://localhost:5000/reset-password/${emailToken}`;
+        const url = `http://localhost:3000/reset_password/${emailToken}`;
 
         config.transporter.sendMail(
           {
@@ -235,3 +235,27 @@ exports.forgot_password = (req, res) => {
     res.status(500).send({ message: err.message });
   });
 };
+
+exports.reset_password = (req,res) => {
+  try {
+    jwt.verify(req.params.token, config.email_secret, (err, decoded) => {
+      if (err) {
+        console.log(err);
+      }
+      const id = decoded.id;
+      const pass = bcrypt.hashSync(req.body.password, 8);
+      User.update({ password: pass }, { where: { uid: id } })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(304).json({ message: err });
+        });
+    });
+    res.end();
+  } catch (e) {
+    console.log(e);
+    res.status(404).json({ error: e });
+  }
+}
