@@ -172,7 +172,7 @@ exports.forgot_password = (req, res) => {
       );
       return res
           .status(404)
-          .send({ message: "Email is not recognized on database" });
+          .send({ message: "Email is not recognized on database,\n For more infromation check the email" });
     }
 
     jwt.sign(
