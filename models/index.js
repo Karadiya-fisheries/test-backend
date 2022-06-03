@@ -34,10 +34,12 @@ db.sequelize = sequelize;
 
 db.user = require("./user.model.js")(sequelize, Sequelize, DataTypes);
 db.role = require("./role.model.js")(sequelize, DataTypes);
-db.boat = require("./boat.model")(sequelize, DataTypes);
-db.fishermen = require("./fishermen.model")(sequelize, DataTypes);
+db.boat = require("./boat.model.js")(sequelize, DataTypes);
+db.fishermen = require("./fishermen.model.js")(sequelize, DataTypes);
+db.triplog = require("./trip.model.js")(sequelize, DataTypes);
+db.departure = require("./departure.model.js")(sequelize, DataTypes);
+db.owner = require("./owner.model.js")(sequelize, DataTypes);
 db.catch = require("./catch.model")(sequelize, DataTypes);
-db.departure = require("./departure.model")(sequelize, DataTypes);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
@@ -66,10 +68,10 @@ db.boat.belongsTo(db.fishermen, {
   foreignKey: "FishermenID",
 });
 
-db.catch.belongsTo(db.boat);
-db.fishermen.hasMany(db.catch);
-db.catch.belongsTo(db.fishermen);
-db.boat.hasMany(db.catch);
+db.triplog.belongsTo(db.boat);
+db.fishermen.hasMany(db.triplog);
+db.triplog.belongsTo(db.fishermen);
+db.boat.hasMany(db.triplog);
 
 db.ROLES = ["user", "admin", "moderator"];
 

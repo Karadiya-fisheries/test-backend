@@ -1,30 +1,67 @@
 module.exports = (sequelize, DataTypes) => {
   const Fishermen = sequelize.define("fishermen", {
-    fishermenId: {
+    FishermenId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
     },
-    fullname: {
+    FIDivision: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    address: {
+    GNDivision: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
-    age: {
+    DSDivision: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
-    nic: {
+    FDistrict: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    role: {
+    Surname: {
       type: DataTypes.STRING,
-      allowNull: false,
+    },
+    OtherNames: {
+      type: DataTypes.STRING,
+    },
+    NicNo: {
+      type: DataTypes.STRING,
+    },
+    FZone: {
+      type: DataTypes.STRING,
+    },
+    Occupation: {
+      type: DataTypes.STRING,
+    },
+    BoatCat: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    NumOfBoats: {
+      type: DataTypes.STRING,
+    },
+    OccuType: {
+      type: DataTypes.STRING,
+    },
+    FOpType: {
+      type: DataTypes.STRING,
+    },
+    AssocAct: {
+      type: DataTypes.STRING,
+    },
+    LInsuaracneNo: {
+      type: DataTypes.STRING,
+    },
+    MemberOfSoc: {
+      type: DataTypes.BOOLEAN,
+    },
+    MemberNo: {
+      type: DataTypes.STRING,
+    },
+    Children: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+    },
+    Dependent: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
     },
   });
   return Fishermen;
