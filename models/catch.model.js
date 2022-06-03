@@ -1,27 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-  const Catch = sequelize.define("catch", {
-    catchId: {
+  const CatchRecord = sequelize.define("CatchRecord", {
+    CatchId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
     },
-    departurePort: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    FishingDate: {
+      type: DataTypes.DATEONLY,
     },
-    Date: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    FishingTime: {
+      type: DataTypes.TIME,
     },
-    fishType: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    GPSPoint: {
+      type: DataTypes.JSONB,
     },
-    harvest: {
-      type: DataTypes.INTEGER,
+    Catch: {
+      type: DataTypes.ARRAY(DataTypes.JSONB),
     },
   });
 
-  return Catch;
+  return CatchRecord;
 };
