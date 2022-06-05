@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 const TripLog = db.triplog;
+const Boat = db.boat;
 
 router.get("/", async (req, res) => {
   TripLog.findAll()
@@ -14,26 +15,31 @@ router.get("/", async (req, res) => {
 
 // create TripLog
 router.post("/", (req, res) => {
-  TripLog.create({
-    WesselID: req.body.WesselID,
-    SkipperID: req.body.SkipperID,
-    Harbor: req.body.Harbor,
-    DepartureDate: req.body.DepartureDate,
-    DepartureTime: req.body.DepartureTime,
-    GearType: req.body.GearType,
-    MainLine: req.body.MainLine,
-    BranchLine: req.body.BranchLine,
-    HookNo: req.body.HookNo,
-    HookTypes: req.body.HookTypes,
-    Depth: req.body.Depth,
-    Bait: req.body.Bait,
-  })
-    .then((newboat) => {
-      res.status(201).json(newboat);
+  Boat.findOne({
+    boatId: req.body.boatID,
+  }).then((boat) => {
+    TripLog.create({
+      boatBoatId: boat.boatId,
+      WesselID: req.body.WesselID,
+      SkipperID: req.body.SkipperID,
+      Harbor: req.body.Harbor,
+      DepartureDate: req.body.DepartureDate,
+      DepartureTime: req.body.DepartureTime,
+      GearType: req.body.GearType,
+      MainLine: req.body.MainLine,
+      BranchLine: req.body.BranchLine,
+      HookNo: req.body.HookNo,
+      HookTypes: req.body.HookTypes,
+      Depth: req.body.Depth,
+      Bait: req.body.Bait,
     })
-    .TripLog((err) => {
-      res.status(400).json({ message: err.message });
-    });
+      .then((newboat) => {
+        res.status(201).json(newboat);
+      })
+      .TripLog((err) => {
+        res.status(400).json({ message: err.message });
+      });
+  });
 });
 
 //update a

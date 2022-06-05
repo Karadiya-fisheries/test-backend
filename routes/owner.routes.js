@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 // create Owner
 router.post("/", (req, res) => {
   Owner.create({
-    uid: req.body.uid,
+    userUid: req.body.uid,
     FDivision: req.body.FIDivision,
     GNDivision: req.body.GNDivision,
     DSDivision: req.body.DSDivision,
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
 router.patch("/:id", async (req, res) => {
   Owner.findByPk(req.params.id)
     .then((Owner) => {
-      Owner.uid = req.body.uid;
+      Owner.userUid = req.body.uid;
       Owner.FIDivision = req.body.FIDivision;
       Owner.GNDivision = req.body.GNDivision;
       Owner.DSDivision = req.body.DSDivision;
@@ -99,7 +99,7 @@ router.get("/get/:uid", async (req, res) => {
   try {
     const result = await Owner.findOne({
       where: {
-        uid: uid,
+        userUid: uid,
       },
     });
     res.json(result);

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 const Catch = db.catch;
+const TripLog = db.triplog;
 
 router.get("/", async (req, res) => {
   Catch.findAll()
@@ -14,18 +15,23 @@ router.get("/", async (req, res) => {
 
 // create catch
 router.post("/", (req, res) => {
-  Catch.create({
-    FishingDate: req.body.DepartureDate,
-    DepartureTime: req.body.DepartureTime,
-    GpsPoint: req.body.GpsPoint,
-    Catch: req.body.Catch,
-  })
-    .then((newboat) => {
-      res.status(201).json(newboat);
+  TripLog.findOne({
+    tripId: req.body.TripID,
+  }).then((log) => {
+    Catch.create({
+      triplogTripId: log.tripId,
+      FishingDate: req.body.DepartureDate,
+      DepartureTime: req.body.DepartureTime,
+      GpsPoint: req.body.GpsPoint,
+      Catch: req.body.Catch,
     })
-    .catch((err) => {
-      res.status(400).json({ message: err.message });
-    });
+      .then((newlog) => {
+        res.status(201).json(newlog);
+      })
+      .catch((err) => {
+        res.status(400).json({ message: err.message });
+      });
+  });
 });
 
 //update a

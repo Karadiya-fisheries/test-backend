@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 // create fishermen
 router.post("/", (req, res) => {
   Fishermen.create({
-    uid: req.body.uid,
+    userUid: req.body.uid,
     FDivision: req.body.FIDivision,
     GNDivision: req.body.GNDivision,
     DSDivision: req.body.DSDivision,
@@ -51,7 +51,7 @@ router.post("/", (req, res) => {
 router.patch("/:id", async (req, res) => {
   Fishermen.findByPk(req.params.id)
     .then((fishermen) => {
-      fishermen.uid = req.body.uid;
+      fishermen.userUid = req.body.uid;
       fishermen.FIDivision = req.body.FIDivision;
       fishermen.GNDivision = req.body.GNDivision;
       fishermen.DSDivision = req.body.DSDivision;
@@ -115,7 +115,7 @@ router.get("/get/:uid", async (req, res) => {
   try {
     const result = await Fishermen.findOne({
       where: {
-        uid: uid,
+        userUid: uid,
       },
     });
     res.json(result);

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 const Departure = db.departure;
-
+const Boat = db.boat;
 router.get("/", async (req, res) => {
   Departure.findAll({ order: [["departureId"]] })
     .then((departure) => {
@@ -14,35 +14,40 @@ router.get("/", async (req, res) => {
 
 // create departure
 router.post("/", (req, res) => {
-  Departure.create({
-    Imul: req.body.Imul,
-    OwnerName: req.body.OwnerName,
-    PhNum: req.body.PhNum,
-    Email: req.body.Email,
-    SkipperName: req.body.SkipperName,
-    SkipperNic: req.body.SkipperNic,
-    SkipperNum: req.body.SkipperNum,
-    DepartingPort: req.body.DepartingPort,
-    FishingZone: req.body.FishingZone,
-    MLength: req.body.MLength,
-    NoThrons: req.body.NoThrons,
-    CNetLength: req.body.CNetLength,
-    CEyeSize: req.body.CEyeSize,
-    NettingLength: req.body.NettingLength,
-    NetEyeSize: req.body.NetEyeSize,
-    CrewDetail: req.body.CrewDetail,
-    LocalOpLicense: req.body.LocalOpLicense,
-    InterOpLicense: req.body.InterOpLicense,
-    RadioStation: req.body.RadioStation,
-    Frequency: req.body.Frequency,
-    VMS: req.body.VMS,
-  })
-    .then((newDeparture) => {
-      res.status(201).json(newDeparture);
+  Boat.findOne({
+    boatId: req.body.BoatID,
+  }).then((boat) => {
+    Departure.create({
+      boatboatId: boat.boatId,
+      Imul: req.body.Imul,
+      OwnerName: req.body.OwnerName,
+      PhNum: req.body.PhNum,
+      Email: req.body.Email,
+      SkipperName: req.body.SkipperName,
+      SkipperNic: req.body.SkipperNic,
+      SkipperNum: req.body.SkipperNum,
+      DepartingPort: req.body.DepartingPort,
+      FishingZone: req.body.FishingZone,
+      MLength: req.body.MLength,
+      NoThrons: req.body.NoThrons,
+      CNetLength: req.body.CNetLength,
+      CEyeSize: req.body.CEyeSize,
+      NettingLength: req.body.NettingLength,
+      NetEyeSize: req.body.NetEyeSize,
+      CrewDetail: req.body.CrewDetail,
+      LocalOpLicense: req.body.LocalOpLicense,
+      InterOpLicense: req.body.InterOpLicense,
+      RadioStation: req.body.RadioStation,
+      Frequency: req.body.Frequency,
+      VMS: req.body.VMS,
     })
-    .catch((err) => {
-      res.status(400).json({ message: err.message });
-    });
+      .then((newDeparture) => {
+        res.status(201).json(newDeparture);
+      })
+      .catch((err) => {
+        res.status(400).json({ message: err.message });
+      });
+  });
 });
 
 // //update a departure
