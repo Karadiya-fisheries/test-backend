@@ -36,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
     Bait: {
       type: DataTypes.STRING,
     },
+    confirm: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
   });
 
   return TripLog;

@@ -2,6 +2,7 @@ const config = require("../config/db.config.js");
 const { DataTypes } = require("sequelize");
 const Sequelize = require("sequelize");
 const { DB } = require("../config/db.config.js");
+const triplog = require("./trip.model.js");
 
 const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   host: config.HOST,
@@ -55,23 +56,22 @@ db.user.belongsToMany(db.role, {
 db.user.hasOne(db.fishermen, {
   foreignKey: "uid",
 });
+db.fishermen.belongsTo(db.user);
 
-db.fishermen.belongsTo(db.user, {
-  foreignKey: "uid",
-});
+db.user.hasOne(db.owner);
+db.owner.belongsTo(db.user);
 
-db.fishermen.hasMany(db.boat, {
-  foreignKey: "FishermenID",
-});
+db.owner.hasMany(db.boat);
+db.boat.belongsTo(db.owner);
 
-db.boat.belongsTo(db.fishermen, {
-  foreignKey: "FishermenID",
-});
-
-db.triplog.belongsTo(db.boat);
-db.fishermen.hasMany(db.triplog);
-db.triplog.belongsTo(db.fishermen);
 db.boat.hasMany(db.triplog);
+db.triplog.belongsTo(db.boat);
+
+db.triplog.hasMany(db.catch);
+db.catch.belongsTo(db.triplog);
+
+db.boat.hasMany(db.departure);
+db.departure.belongsTo(db.boat);
 
 db.ROLES = ["user", "admin", "moderator"];
 

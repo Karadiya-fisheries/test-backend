@@ -69,6 +69,10 @@ module.exports = (sequelize, DataTypes) => {
     Vms: {
       type: DataTypes.BOOLEAN,
     },
+    confirm: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
   });
   return Departure;
 };
