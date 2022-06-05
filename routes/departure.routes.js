@@ -3,11 +3,7 @@ const db = require("../models");
 const Departure = db.departure;
 
 router.get("/", async (req, res) => {
-    Departure.findAll(
-      {order: [ 
-        ['departureId']
-      ]}
-    )
+  Departure.findAll({ order: [["departureId"]] })
     .then((departure) => {
       res.json(departure);
     })
@@ -19,13 +15,27 @@ router.get("/", async (req, res) => {
 // create departure
 router.post("/", (req, res) => {
   Departure.create({
-    
-    imulNumber:req.body.imulNumber,
-    fullName: req.body.fullName,
-    phone: req.body.phone,
-    email: req.body.email,
-    boatId: req.body.boatId
-    
+    Imul: req.body.Imul,
+    OwnerName: req.body.OwnerName,
+    PhNum: req.body.PhNum,
+    Email: req.body.Email,
+    SkipperName: req.body.SkipperName,
+    SkipperNic: req.body.SkipperNic,
+    SkipperNum: req.body.SkipperNum,
+    DepartingPort: req.body.DepartingPort,
+    FishingZone: req.body.FishingZone,
+    MLength: req.body.MLength,
+    NoThrons: req.body.NoThrons,
+    CNetLength: req.body.CNetLength,
+    CEyeSize: req.body.CEyeSize,
+    NettingLength: req.body.NettingLength,
+    NetEyeSize: req.body.NetEyeSize,
+    CrewDetail: req.body.CrewDetail,
+    LocalOpLicense: req.body.LocalOpLicense,
+    InterOpLicense: req.body.InterOpLicense,
+    RadioStation: req.body.RadioStation,
+    Frequency: req.body.Frequency,
+    VMS: req.body.VMS,
   })
     .then((newDeparture) => {
       res.status(201).json(newDeparture);
@@ -40,12 +50,11 @@ router.post("/", (req, res) => {
 router.put("/:id", async (req, res) => {
   Departure.findByPk(req.params.id)
     .then((departure) => {
-      departure.imulNumber = req.body.imulNumber,
-      departure.fullName = req.body.fullName,
-      departure.phone = req.body.phone,
-      departure.email =  req.body.email,
-      departure.boatId =  req.body.boatId
-      
+      (departure.imulNumber = req.body.imulNumber),
+        (departure.fullName = req.body.fullName),
+        (departure.phone = req.body.phone),
+        (departure.email = req.body.email),
+        (departure.boatId = req.body.boatId);
 
       departure.save().then((updateDeparture) => {
         res.json(updateDeparture);

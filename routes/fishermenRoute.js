@@ -16,11 +16,27 @@ router.get("/", async (req, res) => {
 router.post("/", (req, res) => {
   Fishermen.create({
     uid: req.body.uid,
-    fullname: req.body.fullname,
-    address: req.body.address,
-    age: req.body.age,
-    nic: req.body.nic,
-    role: req.body.role,
+    FDivision: req.body.FIDivision,
+    GNDivision: req.body.GNDivision,
+    DSDivision: req.body.DSDivision,
+    FDistrict: req.body.FDistrict,
+    Surname: req.body.Surname,
+    OtherNames: req.body.OtherNames,
+    NicNo: req.body.NicNo,
+    FZone: req.body.FZone,
+    Occupation: req.body.Occupation,
+    BoatCat: req.body.BoatCat,
+    NumofBoats: req.body.NumofBoats,
+    OccuType: req.body.OccuType,
+    FOpType: req.body.FOpType,
+    AssocAct: req.body.AssocAct,
+    LInsuaranceNo: req.body.LInsuaranceNo,
+    MemberOfSoc: req.body.MemberOfSoc,
+    MemberNo: req.body.MemberNo,
+    Children: req.body.Children,
+    Dependent: req.body.Dependent,
+    Photo: req.body.Photo,
+    Sign: req.body,
   })
     .then((newfishermen) => {
       res.status(201).json(newfishermen);
@@ -35,12 +51,28 @@ router.post("/", (req, res) => {
 router.patch("/:id", async (req, res) => {
   Fishermen.findByPk(req.params.id)
     .then((fishermen) => {
-      fishermen.userUid = req.body.uid;
-      fishermen.address = req.body.address;
-      fishermen.age = req.body.age;
-      fishermen.nic = req.body.nic;
-      fishermen.role = req.body.role;
-
+      fishermen.uid = req.body.uid;
+      fishermen.FIDivision = req.body.FIDivision;
+      fishermen.GNDivision = req.body.GNDivision;
+      fishermen.DSDivision = req.body.DSDivision;
+      fishermen.FDistrict = req.body.FDistrict;
+      fishermen.Surname = req.body.Surname;
+      fishermen.OtherNames = req.body.OtherNames;
+      fishermen.NicNo = req.body.NicNo;
+      fishermen.FZone = req.body.FZone;
+      fishermen.Occupation = req.body.Occupation;
+      fishermen.BoatCat = req.body.BoatCat;
+      fishermen.NumofBoats = req.body.NumofBoats;
+      fishermen.OccuType = req.body.OccuType;
+      fishermen.FOpType = req.body.FOpType;
+      fishermen.AssocAct = req.body.AssocAct;
+      fishermen.LInsuaranceNo = req.body.LInsuaranceNo;
+      fishermen.MemberOfSoc = req.body.MemberOfSoc;
+      fishermen.MemberNo = req.body.MemberNo;
+      fishermen.Children = req.body.Children;
+      fishermen.Dependent = req.body.Dependent;
+      fishermen.Photo = req.body.Photo;
+      fishermen.Sign = req.body.Sign;
       fishermen.save().then((updateFishermen) => {
         res.json(updateFishermen);
       });

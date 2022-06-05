@@ -53,9 +53,7 @@ db.user.belongsToMany(db.role, {
   otherKey: "roleId",
 });
 
-db.user.hasOne(db.fishermen, {
-  foreignKey: "uid",
-});
+db.user.hasOne(db.fishermen);
 db.fishermen.belongsTo(db.user);
 
 db.user.hasOne(db.owner);

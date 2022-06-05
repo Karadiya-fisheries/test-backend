@@ -33,7 +33,7 @@ module.exports = function (app) {
         }
         const id = decoded.id;
 
-        User.update({ confirm: true }, { where: { uid: id } })
+        User.update({ confirm: true }, { where: { userUid: id } })
           .then((result) => {
             console.log(result);
           })
@@ -51,8 +51,7 @@ module.exports = function (app) {
     }
   });
 
-  app.post("/api/auth/forgot-password",controller.forgot_password);
+  app.post("/api/auth/forgot-password", controller.forgot_password);
 
   app.post("/api/auth/reset-password/:token", controller.reset_password);
 };
-
