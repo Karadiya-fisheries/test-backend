@@ -16,4 +16,34 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/user", async (req, res) => {
+  User.count()
+    .then((count) => {
+      res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
+router.get("/fishermen", async (req, res) => {
+  Fishermen.count()
+    .then((count) => {
+      res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
+router.get("/triplog", async (req, res) => {
+  TripLog.count()
+    .then((count) => {
+      res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
 module.exports = router;
