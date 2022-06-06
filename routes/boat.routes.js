@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 const Boat = db.boat;
-const Fishermen = db.fishermen;
+const Owner = db.owner;
 
 router.get("/", async (req, res) => {
   Boat.findAll()
@@ -16,17 +16,26 @@ router.get("/", async (req, res) => {
 // create boat
 router.post("/", (req, res) => {
   const owner_id = req.body.owner_id;
-  Fishermen.findOne({
+  Owner.findOne({
     where: {
-      fishermen,
+      OwnerId: owner_id,
     },
-  });
-  Boat.create({
-    name: req.body.name,
-    FishermenID: req.body.owner_id,
   })
-    .then((newboat) => {
-      res.status(201).json(newboat);
+    .then((owner) => {
+      Boat.create({
+        ownerOwnerId: owner.OwnerId,
+        BoatName: req.body.BoatName,
+        BoatRg: req.body.BoatRg,
+        BoatType: req.body.BoatType,
+        InsuaranceNo: req.body.InsuaranceNo,
+        FOpType: req.body.FOpType,
+      })
+        .then((newboat) => {
+          res.status(201).json(newboat);
+        })
+        .catch((err) => {
+          res.status(400).json({ message: err.message });
+        });
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });
@@ -39,7 +48,7 @@ router.patch("/:id", async (req, res) => {
   Boat.findByPk(req.params.id)
     .then((boat) => {
       boat.name = req.body.name;
-      boat.FishermenID = req.body.ownerID;
+      boat.ownerOwnerID = req.body.ownerID;
 
       boat.save().then((updateboat) => {
         res.json(updateboat);

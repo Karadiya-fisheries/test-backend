@@ -5,11 +5,28 @@ POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "fullname": "Ravindu",
-    "address": "matara",
-    "age": "56",
-    "nic": "000",
-    "role": "fishermen"
+    "userUid": "4",
+    "FDivision": "Galle",
+    "GNDivision": "",
+    "DSDivision": "Akmeemana",
+    "FDistrict": "Galle",
+    "Surname": "Silva",
+    "OtherNames": "OtherNames",
+    "NicNo": "NicNo",
+    "FZone": "FZone",
+    "Occupation": "Occupation",
+    "BoatCat": "BoatCat",
+    "NumofBoats": "NumofBoats",
+    "OccuType": "OccuType",
+    "FOpType": "FOpType",
+    "AssocAct": "AssocAct",
+    "LInsuaranceNo": "LInsuaranceNo",
+    "MemberOfSoc": "MemberOfSoc",
+    "MemberNo": "MemberNo",
+    "Children": "Children",
+    "Dependent": "Dependent",
+    "Photo": "Photo",
+    "Sign": ""
 }
 
 ###
@@ -111,10 +128,10 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "officer" ,
+    "fullname" : "owner" ,
     "email" : "zyliwexi@ryteto.me",
     "phone" : "05888888",
-    "password" : "officer",
+    "password" : "owner",
     "roles" : ["user","admin"]
 }
 ###
@@ -178,11 +195,11 @@ POST https://serene-woodland-83390.herokuapp.com/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "officer" ,
-    "email" : "zyliwexi@ryteto.me",
+    "fullname" : "owner" ,
+    "email" : "kylypylo@acrossgracealley.com",
     "phone" : "05888888",
-    "password" : "officer",
-    "roles" : ["user","admin"]
+    "password" : "ownerr",
+    "roles" : ["user","moderator"]
 }
 ###
 POST https://serene-woodland-83390.herokuapp.com/api/auth/signin
@@ -190,5 +207,5 @@ Content-Type: application/json
 
 {
     "email" : "zyliwexi@ryteto.me",
-    "password" : "adminn"
+    "password" : "officer"
 }
