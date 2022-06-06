@@ -5,11 +5,28 @@ POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "fullname": "Ravindu",
-    "address": "matara",
-    "age": "56",
-    "nic": "000",
-    "role": "fishermen"
+    "userUid": "4",
+    "FDivision": "Galle",
+    "GNDivision": "",
+    "DSDivision": "Akmeemana",
+    "FDistrict": "Galle",
+    "Surname": "Silva",
+    "OtherNames": "OtherNames",
+    "NicNo": "NicNo",
+    "FZone": "FZone",
+    "Occupation": "Occupation",
+    "BoatCat": "BoatCat",
+    "NumofBoats": "NumofBoats",
+    "OccuType": "OccuType",
+    "FOpType": "FOpType",
+    "AssocAct": "AssocAct",
+    "LInsuaranceNo": "LInsuaranceNo",
+    "MemberOfSoc": "MemberOfSoc",
+    "MemberNo": "MemberNo",
+    "Children": "Children",
+    "Dependent": "Dependent",
+    "Photo": "Photo",
+    "Sign": ""
 }
 
 ###
