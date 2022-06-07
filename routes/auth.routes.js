@@ -33,7 +33,7 @@ module.exports = function (app) {
         }
         const id = decoded.id;
 
-        User.update({ confirm: true }, { where: { userUid: id } })
+        User.update({ confirm: true }, { where: { uid: id } })
           .then((result) => {
             console.log(result);
           })
