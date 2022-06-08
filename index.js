@@ -11,6 +11,7 @@ const departureRoute = require("./routes/departure.routes");
 const triplogRoute = require("./routes/triplog.routes");
 const ownerRoute = require("./routes/owner.routes");
 const statRoute = require("./routes/stat.routes");
+const queryRoute = require("./routes/query.routes");
 const app = express();
 
 app.use(cors());
@@ -56,6 +57,7 @@ app.use("/departure", departureRoute);
 app.use("/owner", ownerRoute);
 app.use("/triplog", triplogRoute);
 app.use("/stat", statRoute);
+app.use("/query", queryRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 

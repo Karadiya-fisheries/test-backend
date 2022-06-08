@@ -1,7 +1,10 @@
-GET http://localhost:5000/fishermen
+GET http://localhost:5000/stat/user
 
 ###
-POST http://localhost:5000/fishermen
+GET http://localhost:5000/owner
+
+###
+POST http://localhost:5000/owner
 Content-Type: application/json
 
 {
@@ -12,21 +15,7 @@ Content-Type: application/json
     "FDistrict": "Galle",
     "Surname": "Silva",
     "OtherNames": "OtherNames",
-    "NicNo": "NicNo",
-    "FZone": "FZone",
-    "Occupation": "Occupation",
-    "BoatCat": "BoatCat",
-    "NumofBoats": "NumofBoats",
-    "OccuType": "OccuType",
-    "FOpType": "FOpType",
-    "AssocAct": "AssocAct",
-    "LInsuaranceNo": "LInsuaranceNo",
-    "MemberOfSoc": "MemberOfSoc",
-    "MemberNo": "MemberNo",
-    "Children": "Children",
-    "Dependent": "Dependent",
-    "Photo": "Photo",
-    "Sign": ""
+    "NicNo": "9809800V"
 }
 
 ###
@@ -70,8 +59,12 @@ POST http://localhost:5000/boats
 Content-Type: application/json
 
 {
-    "name": "paper",
-    "ownerID": 1
+    "owner_id": 1,
+    "BoatName": "Morning",
+    "BoatRg": "445098v",
+    "BoatType": "NTRB",
+    "InsuarnaceNo": "394879",
+    "FOpType": "Internal"
     
 }
 
@@ -150,12 +143,16 @@ GET http://localhost:5000/departure
 POST http://localhost:5000/departure
 Content-Type: application/json
 
-{   "imulNumber":"004",
-    "fullName": "kamal perere",
-    "phone": "07aa45178",
-    "email": "amkmalal@gmail.com"
-  
-    
+{   "boatboatId": 1,
+    "Imul": "34343",
+    "OwnerName": "officer",
+    "PhNum": "34323v",
+    "Email": "heoolo@gmail.com",
+    "SkipperName": "Hellowrold",
+    "SkipperNic": "23677888",
+    "SkipperNum": "der5543",
+    "DepartingPort": "Negambo",
+    "FishingZone": "Internationl"
 }
 
 ###
@@ -209,3 +206,12 @@ Content-Type: application/json
     "email" : "zyliwexi@ryteto.me",
     "password" : "officer"
 }
+ 
+###
+GET http://localhost:5000/query/pending/departure/count
+
+###
+GET http://localhost:5000/stat/user/count
+
+###
+GET http://localhost:5000/query/pending/departure/count
