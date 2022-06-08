@@ -1,34 +1,42 @@
 const router = require("express").Router();
 const db = require("../models");
-const Catch = db.catch;
 const TripLog = db.triplog;
+const Boat = db.boat;
 
 router.get("/", async (req, res) => {
-  Catch.findAll()
+  TripLog.findAll()
     .then((record) => {
       res.json(record);
     })
-    .catch((error) => {
+    .TripLog((error) => {
       res.status(400).json("message :" + error);
     });
 });
 
-// create catch
+// create TripLog
 router.post("/", (req, res) => {
-  TripLog.findOne({
-    tripId: req.body.TripID,
-  }).then((log) => {
-    Catch.create({
-      triplogTripId: log.tripId,
-      FishingDate: req.body.DepartureDate,
+  Boat.findOne({
+    boatId: req.body.boatID,
+  }).then((boat) => {
+    TripLog.create({
+      boatBoatId: boat.boatId,
+      WesselID: req.body.WesselID,
+      SkipperID: req.body.SkipperID,
+      Harbor: req.body.Harbor,
+      DepartureDate: req.body.DepartureDate,
       DepartureTime: req.body.DepartureTime,
-      GpsPoint: req.body.GpsPoint,
-      Catch: req.body.Catch,
+      GearType: req.body.GearType,
+      MainLine: req.body.MainLine,
+      BranchLine: req.body.BranchLine,
+      HookNo: req.body.HookNo,
+      HookTypes: req.body.HookTypes,
+      Depth: req.body.Depth,
+      Bait: req.body.Bait,
     })
-      .then((newlog) => {
-        res.status(201).json(newlog);
+      .then((newboat) => {
+        res.status(201).json(newboat);
       })
-      .catch((err) => {
+      .TripLog((err) => {
         res.status(400).json({ message: err.message });
       });
   });
@@ -37,26 +45,26 @@ router.post("/", (req, res) => {
 //update a
 
 router.patch("/:id", async (req, res) => {
-  Catch.findByPk(req.params.id)
+  TripLog.findByPk(req.params.id)
     .then((record) => {
       record.name = req.body.name;
       record.FishermenID = req.body.ownerID;
 
-      record.save().then((updatecatch) => {
-        res.json(updatecatch);
+      record.save().then((updatetriplog) => {
+        res.json(updatetriplog);
       });
     })
-    .catch((err) => {
+    .TripLog((err) => {
       res.status(400).json({ message: err.message });
     });
 });
 
-//delete a catch
+//delete a TripLog
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedboat = await Catch.destroy({
+    const deletedboat = await TripLog.destroy({
       where: {
         fishermenId: id,
       },
@@ -67,12 +75,12 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//get a catch
+//get a TripLog
 
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const result = await Catch.findByPk(id);
+    const result = await TripLog.findByPk(id);
     res.json(result);
   } catch (err) {
     res.status(400).json({ message: err.message });

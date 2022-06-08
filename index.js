@@ -4,10 +4,14 @@ const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
-const fishermenRoute = require("./routes/fishermenRoute");
-const boatRoute = require("./routes/boatRoute");
+const fishermenRoute = require("./routes/fishermen.routes");
+const boatRoute = require("./routes/boat.routes");
 const catchRoute = require("./routes/catch.routes");
 const departureRoute = require("./routes/departure.routes");
+const triplogRoute = require("./routes/triplog.routes");
+const ownerRoute = require("./routes/owner.routes");
+const statRoute = require("./routes/stat.routes");
+const queryRoute = require("./routes/query.routes");
 const app = express();
 
 app.use(cors());
@@ -21,35 +25,39 @@ app.use(passport.session());
 app.use(flash());
 
 const db = require("./models");
+const { owner } = require("./models");
 const Role = db.role;
 
 db.sequelize.sync();
 // ({ force: true }).then(() => {
-//     initial();
+//   initial();
+// });
+
+// function initial() {
+//   Role.create({
+//     id: 1,
+//     name: "user",
 //   });
 
-//   function initial() {
-//     Role.create({
-//       id: 1,
-//       name: "user",
-//     });
+//   Role.create({
+//     id: 2,
+//     name: "moderator",
+//   });
 
-//     Role.create({
-//       id: 2,
-//       name: "moderator",
-//     });
-
-//     Role.create({
-//       id: 3,
-//       name: "admin",
-//     });
-//   }
+//   Role.create({
+//     id: 3,
+//     name: "admin",
+//   });
+// }
 
 app.use("/fishermen", fishermenRoute);
 app.use("/boats", boatRoute);
 app.use("/catches", catchRoute);
 app.use("/departure", departureRoute);
-
+app.use("/owner", ownerRoute);
+app.use("/triplog", triplogRoute);
+app.use("/stat", statRoute);
+app.use("/query", queryRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 

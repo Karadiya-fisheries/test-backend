@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Fishermen = sequelize.define("fishermen", {
-    FishermenId: {
+  const Owner = sequelize.define("owner", {
+    OwnerId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
@@ -30,9 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     FZone: {
       type: DataTypes.STRING,
     },
-    Occupation: {
-      type: DataTypes.STRING,
-    },
     BoatCat: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
@@ -48,27 +45,6 @@ module.exports = (sequelize, DataTypes) => {
     AssocAct: {
       type: DataTypes.STRING,
     },
-    LInsuaracneNo: {
-      type: DataTypes.STRING,
-    },
-    MemberOfSoc: {
-      type: DataTypes.BOOLEAN,
-    },
-    MemberNo: {
-      type: DataTypes.STRING,
-    },
-    Children: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
-    },
-    Dependent: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
-    },
-    Photo: {
-      type: DataTypes.STRING,
-    },
-    Sign: {
-      type: DataTypes.STRING,
-    },
   });
-  return Fishermen;
+  return Owner;
 };

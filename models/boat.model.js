@@ -6,10 +6,20 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       autoIncrement: true,
     },
-    name: {
+    BoatName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true,
+    },
+    BoatRg: {
+      type: DataTypes.STRING,
+    },
+    BoatType: {
+      type: DataTypes.STRING,
+    },
+    InsuaranceNO: {
+      type: DataTypes.STRING,
+    },
+    FOpType: {
+      type: DataTypes.STRING,
     },
   });
 

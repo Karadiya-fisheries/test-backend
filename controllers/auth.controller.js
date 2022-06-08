@@ -28,7 +28,7 @@ exports.signup = (req, res) => {
           expiresIn: "1d",
         },
         (err, emailToken) => {
-          const url = `http://localhost:5000/confirmation/${emailToken}`;
+          const url = `https://serene-woodland-83390.herokuapp.com/confirmation/${emailToken}`;
 
           config.transporter.sendMail(
             {
@@ -130,16 +130,17 @@ exports.signin = (req, res) => {
 exports.forgot_password = (req, res) => {
   User.findOne({
     where: {
-      email: req.body.email
+      email: req.body.email,
     },
-  }).then((user) => {
-    if (!user || !user.confirm) {
-      config.transporter.sendMail(
-        {
-          from: "7tharindugalle@gmail.com",
-          to: req.body.email,
-          subject: "Forgot Password - Karadiya",
-          html: `
+  })
+    .then((user) => {
+      if (!user || !user.confirm) {
+        config.transporter.sendMail(
+          {
+            from: "7tharindugalle@gmail.com",
+            to: req.body.email,
+            subject: "Forgot Password - Karadiya",
+            html: `
           <html>
           <head>
             <style>
@@ -162,36 +163,39 @@ exports.forgot_password = (req, res) => {
           </body>
           </html>
           `,
-        },
-        (error, info) => {
-          if (error) {
-            return console.log(error);
+          },
+          (error, info) => {
+            if (error) {
+              return console.log(error);
+            }
+            console.log("Message %s sent: %s", info.messageId, info.response);
           }
-          console.log("Message %s sent: %s", info.messageId, info.response);
-        }
-      );
-      return res
+        );
+        return res
           .status(404)
-          .send({ message: "Email is not recognized on database,\n For more infromation check the email" });
-    }
+          .send({
+            message:
+              "Email is not recognized on database,\n For more infromation check the email",
+          });
+      }
 
-    jwt.sign(
-      {
-        id: user.uid,
-      },
-      config.email_secret,
-      {
-        expiresIn: "1d",
-      },
-      (err, emailToken) => {
-        const url = `http://localhost:3000/reset_password/${emailToken}`;
+      jwt.sign(
+        {
+          id: user.uid,
+        },
+        config.email_secret,
+        {
+          expiresIn: "1d",
+        },
+        (err, emailToken) => {
+          const url = `http://localhost:3000/reset_password/${emailToken}`;
 
-        config.transporter.sendMail(
-          {
-            from: "7tharindugalle@gmail.com",
-            to: user.email,
-            subject: "Forgot Password - Karadiya",
-            html: `
+          config.transporter.sendMail(
+            {
+              from: "7tharindugalle@gmail.com",
+              to: user.email,
+              subject: "Forgot Password - Karadiya",
+              html: `
             <html>
             <head>
               <style>
@@ -217,26 +221,25 @@ exports.forgot_password = (req, res) => {
             </body>
             </html>
             `,
-          },
-          (error, info) => {
-            if (error) {
-              return console.log(error);
+            },
+            (error, info) => {
+              if (error) {
+                return console.log(error);
+              }
+              console.log("Message %s sent: %s", info.messageId, info.response);
             }
-            console.log("Message %s sent: %s", info.messageId, info.response);
-          }
-          
-        );
+          );
 
-        res.status(200).send({ message: "Email Sent" });
-      }
-    );
-
-  }).catch((err) => {
-    res.status(500).send({ message: err.message });
-  });
+          res.status(200).send({ message: "Email Sent" });
+        }
+      );
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
 };
 
-exports.reset_password = (req,res) => {
+exports.reset_password = (req, res) => {
   try {
     jwt.verify(req.params.token, config.email_secret, (err, decoded) => {
       if (err) {
@@ -258,4 +261,4 @@ exports.reset_password = (req,res) => {
     console.log(e);
     res.status(404).json({ error: e });
   }
-}
+};
