@@ -63,9 +63,6 @@ module.exports = (sequelize, DataTypes) => {
     Dependent: {
       type: DataTypes.ARRAY(DataTypes.JSON),
     },
-    Photo: {
-      type: DataTypes.STRING,
-    },
     Sign: {
       type: DataTypes.STRING,
     },

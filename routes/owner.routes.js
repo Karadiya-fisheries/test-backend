@@ -1,6 +1,22 @@
 const router = require("express").Router();
+const { boat } = require("../models");
 const db = require("../models");
 const Owner = db.owner;
+
+router.get("/boat/:id", async (req, res) => {
+  Owner.findAll({
+    where: {
+      OwnerId: req.params.id,
+    },
+    include: boat,
+  })
+    .then((Owner) => {
+      res.json(Owner);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
 
 router.get("/", async (req, res) => {
   Owner.findAll()

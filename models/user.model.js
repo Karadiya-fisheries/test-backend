@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    profileUrl: { type: DataTypes.STRING },
     confirm: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

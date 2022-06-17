@@ -1,14 +1,28 @@
 GET http://localhost:5000/stat/user
 
 ###
+GET http://localhost:5000/profile/1
+
+
+###
+POST http://localhost:5000/profile/1
+Content-Type: application/json
+
+{
+    "ProfileUrl": "http://localhost:5000/profile/1"
+}
+###
 GET http://localhost:5000/owner
+
+###
+GET http://localhost:5000/owner/boat/1
 
 ###
 POST http://localhost:5000/owner
 Content-Type: application/json
 
 {
-    "userUid": "4",
+    "userUid": "2",
     "FDivision": "Galle",
     "GNDivision": "",
     "DSDivision": "Akmeemana",
@@ -52,7 +66,7 @@ GET http://localhost:5000/boats
 
 
 ###
-GET http://localhost:5000/boats/all
+GET http://localhost:5000/boats/owner/1
 
 ###
 POST http://localhost:5000/boats
@@ -108,11 +122,11 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "admin" ,
-    "email" : "admin@gmail.com",
+    "fullname" : "owner" ,
+    "email" : "maxalag876@serosin.com",
     "phone" : "05888888",
-    "password" : "adminn",
-    "roles" : ["user","admin"]
+    "password" : "owner",
+    "roles" : ["user", "owner"]
 }
 
 
@@ -196,7 +210,7 @@ Content-Type: application/json
     "email" : "kylypylo@acrossgracealley.com",
     "phone" : "05888888",
     "password" : "ownerr",
-    "roles" : ["user","moderator"]
+    "roles" : ["user","owner"]
 }
 ###
 POST https://serene-woodland-83390.herokuapp.com/api/auth/signin
