@@ -1,9 +1,27 @@
 const router = require("express").Router();
+const { user } = require("../models");
 const db = require("../models");
 const Fishermen = db.fishermen;
 
+router.get("/user/:id", async (req, res) => {
+  Fishermen.findAll({
+    where: {
+      FishermenId: req.params.id,
+    },
+    include: user,
+  })
+    .then((fishermen) => {
+      res.json(fishermen);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
 router.get("/", async (req, res) => {
-  Fishermen.findAll()
+  Fishermen.findAll({
+    include: user,
+  })
     .then((fishermen) => {
       res.json(fishermen);
     })

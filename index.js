@@ -30,27 +30,26 @@ const db = require("./models");
 const { owner } = require("./models");
 const Role = db.role;
 
-db.sequelize.sync();
-// ({ force: true }).then(() => {
-//   initial();
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  initial();
+});
 
-// function initial() {
-//   Role.create({
-//     id: 1,
-//     name: "user",
-//   });
+function initial() {
+  Role.create({
+    id: 1,
+    name: "user",
+  });
 
-//   Role.create({
-//     id: 2,
-//     name: "owner",
-//   });
+  Role.create({
+    id: 2,
+    name: "owner",
+  });
 
-//   Role.create({
-//     id: 3,
-//     name: "officer",
-//   });
-// }
+  Role.create({
+    id: 3,
+    name: "officer",
+  });
+}
 
 app.use("/fishermen", fishermenRoute);
 app.use("/boats", boatRoute);
