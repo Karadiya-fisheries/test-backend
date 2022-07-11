@@ -12,13 +12,13 @@ Content-Type: application/json
     "ProfileUrl": "http://localhost:5000/profile/1"
 }
 ###
-GET http://localhost:5000/owner
+GET http://localhost:5000/owner/
 
 ###
 GET http://localhost:5000/owner/boat/1
 
 ###
-POST http://localhost:5000/owner
+POST http://localhost:5000/owner/
 Content-Type: application/json
 
 {
@@ -31,6 +31,59 @@ Content-Type: application/json
     "OtherNames": "OtherNames",
     "NicNo": "9809800V"
 }
+###
+PATCH http://localhost:5000/owner/1
+Content-Type: application/json
+
+{
+    "uid": "1"
+}
+
+###
+GET http://localhost:5000/triplog/
+
+###
+POST http://localhost:5000/triplog/
+Content-Type: application/json
+
+{
+      "boatId": "1",
+      "WesselID": "445098v",
+      "SkipperID": "1",
+      "Harbor": "Galle",
+      "DepartureDate": "2022-07-30",
+      "DepartureTime": "04:19:30",
+      "GearType": "",
+      "MainLine": "200",
+      "BranchLine": "100",
+      "HookNo": "100",
+      "HookTypes": "large",
+      "Depth": "10",
+      "Bait": "squid"
+}
+
+
+###
+GET http://localhost:5000/catch/
+
+###
+POST http://localhost:5000/catch/
+Content-Type: application/json
+
+{
+      "tripId": "1",
+      "FishingDate": "2022-07-1",
+      "FishingTime": "20:02:44",
+      "GPSPoint": {
+        "start":{"long": "80.3845",
+        "lat": "6.8900"},
+        "end": {
+            "long": "80.35",
+        "lat": "6.99"
+        }
+      },
+      "Catch": [{"FishType": "Tuna","FishSubType": "BlueFin", "Qty": "44", "Weight": "100"},{"FishType": "Tuna","FishSubType": "YellowFine", "Qty": "20", "Weight": "50"}]
+}
 
 ###
 GET http://localhost:5000/fishermen/3
@@ -40,10 +93,10 @@ PATCH http://localhost:5000/fishermen/2
 Content-Type: application/json
 
 {
-    "fullname": "Ravindu",
-    "address": "matara",
-    "age": "60",
-    "nic": "000",
+    "fullname": "Ravindu"",
+    "address": "matara"",
+    "age": "60"",
+    "nic": "000"",
     "role": "fishermen"
 }
 
@@ -54,10 +107,10 @@ POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "fullname": "Ravindu",
-    "address": "matara",
-    "age": "56",
-    "nic": "000",
+    "fullname": "Ravindu"",
+    "address": "matara"",
+    "age": "56"",
+    "nic": "000"",
     "role": "fishermen"
 }
 
@@ -74,10 +127,10 @@ Content-Type: application/json
 
 {
     "owner_id": 1,
-    "BoatName": "Morning",
-    "BoatRg": "445098v",
-    "BoatType": "NTRB",
-    "InsuarnaceNo": "394879",
+    "BoatName": "Morning"",
+    "BoatRg": "445098v"",
+    "BoatType": "NTRB"",
+    "InsuarnaceNo": "394879"",
     "FOpType": "Internal"
     
 }
@@ -91,7 +144,7 @@ PATCH http://localhost:5000/boats/1
 Content-Type: application/json
 
 {
-    "name": "paper",
+    "name": "paper"",
     "ownerID": 2
 }
 
@@ -104,7 +157,7 @@ GET http://localhost:5000/query/fishermen
 Content-Type: application/json
 
 {
-    "col1" : "user_id",
+    "col1" : "user_id"",
     "val1" : "Tndu"
 }
 
@@ -113,7 +166,7 @@ GET http://localhost:5000/query/boats
 Content-Type: application/json
 
 {
-    "col1" : "name",
+    "col1" : "name"",
     "val1" : "rock"
 }
 
@@ -123,10 +176,10 @@ Content-Type: application/json
 
 {
     "fullname" : "owner" ,
-    "email" : "maxalag876@serosin.com",
-    "phone" : "05888888",
-    "password" : "owner",
-    "roles" : ["user", "owner"]
+    "email" : "maxalag876@serosin.com"",
+    "phone" : "05888888"",
+    "password" : "owner"",
+    "roles" : ["user"", "owner"]
 }
 
 
@@ -136,17 +189,17 @@ Content-Type: application/json
 
 {
     "fullname" : "owner" ,
-    "email" : "zyliwexi@ryteto.me",
-    "phone" : "05888888",
-    "password" : "owner",
-    "roles" : ["user","admin"]
+    "email" : "zyliwexi@ryteto.me"",
+    "phone" : "05888888"",
+    "password" : "owner"",
+    "roles" : ["user"","admin"]
 }
 ###
 POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "zyliwexi@ryteto.me",
+    "email" : "zyliwexi@ryteto.me"",
     "password" : "adminn"
 }
 ###
@@ -158,14 +211,14 @@ POST http://localhost:5000/departure
 Content-Type: application/json
 
 {   "boatboatId": 1,
-    "Imul": "34343",
-    "OwnerName": "officer",
-    "PhNum": "34323v",
-    "Email": "heoolo@gmail.com",
-    "SkipperName": "Hellowrold",
-    "SkipperNic": "23677888",
-    "SkipperNum": "der5543",
-    "DepartingPort": "Negambo",
+    "Imul": "34343"",
+    "OwnerName": "officer"",
+    "PhNum": "34323v"",
+    "Email": "heoolo@gmail.com"",
+    "SkipperName": "Hellowrold"",
+    "SkipperNic": "23677888"",
+    "SkipperNum": "der5543"",
+    "DepartingPort": "Negambo"",
     "FishingZone": "Internationl"
 }
 
@@ -173,9 +226,9 @@ Content-Type: application/json
 PATCH http://localhost:5000/departure/1
 Content-Type: application/json
 
-{   "imulNumber":"002",
-    "fullName": "JAGATH perere",
-    "phone": "07018835544",
+{   "imulNumber":"002"",
+    "fullName": "JAGATH perere"",
+    "phone": "07018835544"",
     "email": "JAGATH@gmail.com"
 }
 ###
@@ -194,10 +247,10 @@ Content-Type: application/json
 
 {
     "fullname" : "admin" ,
-    "email" : "admin@gmail.com",
-    "phone" : "05888888",
-    "password" : "adminn",
-    "roles" : ["user","admin"]
+    "email" : "admin@gmail.com"",
+    "phone" : "05888888"",
+    "password" : "adminn"",
+    "roles" : ["user"","admin"]
 }
 
 
@@ -207,17 +260,17 @@ Content-Type: application/json
 
 {
     "fullname" : "owner" ,
-    "email" : "kylypylo@acrossgracealley.com",
-    "phone" : "05888888",
-    "password" : "ownerr",
-    "roles" : ["user","owner"]
+    "email" : "kylypylo@acrossgracealley.com"",
+    "phone" : "05888888"",
+    "password" : "ownerr"",
+    "roles" : ["user"","owner"]
 }
 ###
 POST https://serene-woodland-83390.herokuapp.com/api/auth/signin
 Content-Type: application/json
 
 {
-    "email" : "zyliwexi@ryteto.me",
+    "email" : "zyliwexi@ryteto.me"",
     "password" : "officer"
 }
  

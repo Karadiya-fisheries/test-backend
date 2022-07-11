@@ -20,9 +20,9 @@ router.post("/", (req, res) => {
   }).then((log) => {
     Catch.create({
       triplogTripId: log.tripId,
-      FishingDate: req.body.DepartureDate,
-      DepartureTime: req.body.DepartureTime,
-      GpsPoint: req.body.GpsPoint,
+      FishingDate: req.body.FishingDate,
+      FishingTime: req.body.FishingTime,
+      GPSPoint: req.body.GPSPoint,
       Catch: req.body.Catch,
     })
       .then((newlog) => {

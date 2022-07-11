@@ -53,8 +53,8 @@ db.sequelize.sync();
 // }
 
 app.use("/fishermen", fishermenRoute);
-app.use("/boats", boatRoute);
-app.use("/catches", catchRoute);
+app.use("/boat", boatRoute);
+app.use("/catch", catchRoute);
 app.use("/departure", departureRoute);
 app.use("/owner", ownerRoute);
 app.use("/triplog", triplogRoute);

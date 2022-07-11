@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const db = require("../models");
+const catchModel = db.catch;
 const TripLog = db.triplog;
 const Boat = db.boat;
 
 router.get("/", async (req, res) => {
-  TripLog.findAll()
+  TripLog.findAll({ include: catchModel })
     .then((record) => {
       res.json(record);
     })
-    .TripLog((error) => {
+    .catch((error) => {
       res.status(400).json("message :" + error);
     });
 });
@@ -36,7 +37,7 @@ router.post("/", (req, res) => {
       .then((newboat) => {
         res.status(201).json(newboat);
       })
-      .TripLog((err) => {
+      .catch((err) => {
         res.status(400).json({ message: err.message });
       });
   });
@@ -54,7 +55,7 @@ router.patch("/:id", async (req, res) => {
         res.json(updatetriplog);
       });
     })
-    .TripLog((err) => {
+    .catch((err) => {
       res.status(400).json({ message: err.message });
     });
 });
