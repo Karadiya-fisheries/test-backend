@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/triplog/
+GET http://localhost:5000/triplog/1
 
 ###
 POST http://localhost:5000/triplog/
@@ -71,18 +71,18 @@ POST http://localhost:5000/catch/
 Content-Type: application/json
 
 {
-      "tripId": "1",
+      "tripIDD": "1",
       "FishingDate": "2022-07-1",
       "FishingTime": "20:02:44",
       "GPSPoint": {
         "start":{"long": "80.3845",
-        "lat": "6.8900"},
+        "lat": "70"},
         "end": {
-            "long": "80.35",
+            "long": "80",
         "lat": "6.99"
         }
       },
-      "Catch": [{"FishType": "Tuna","FishSubType": "BlueFin", "Qty": "44", "Weight": "100"},{"FishType": "Tuna","FishSubType": "YellowFine", "Qty": "20", "Weight": "50"}]
+      "Catch": [{"FishType": "SpearFish","FishSubType": "BlueFin", "Qty": "30", "Weight": "100"},{"FishType": "Tuna","FishSubType": "YellowFine", "Qty": "20", "Weight": "50"}]
 }
 
 ###

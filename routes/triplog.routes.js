@@ -14,6 +14,16 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/:id", async (req, res) => {
+  TripLog.findOne({ include: catchModel })
+    .then((record) => {
+      res.json(record);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
 // create TripLog
 router.post("/", (req, res) => {
   Boat.findOne({
