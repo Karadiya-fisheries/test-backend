@@ -22,7 +22,7 @@ POST http://localhost:5000/owner/
 Content-Type: application/json
 
 {
-    "userUid": "2",
+    "uid": "1",
     "FDivision": "Galle",
     "GNDivision": "",
     "DSDivision": "Akmeemana",
@@ -71,15 +71,15 @@ POST http://localhost:5000/catch/
 Content-Type: application/json
 
 {
-      "tripIDD": "1",
-      "FishingDate": "2022-07-1",
+      "tripID": "1",
+      "FishingDate": "05-07-2022",
       "FishingTime": "20:02:44",
       "GPSPoint": {
-        "start":{"long": "80.3845",
+        "start":{"long": "89.256",
         "lat": "70"},
         "end": {
-            "long": "80",
-        "lat": "6.99"
+            "long": "100",
+        "lat": "9.99"
         }
       },
       "Catch": [{"FishType": "SpearFish","FishSubType": "BlueFin", "Qty": "30", "Weight": "100"},{"FishType": "Tuna","FishSubType": "YellowFine", "Qty": "20", "Weight": "50"}]
@@ -89,29 +89,35 @@ Content-Type: application/json
 GET http://localhost:5000/fishermen/3
 
 ###
-PATCH http://localhost:5000/fishermen/2
+POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "fullname": "Ravindu"",
-    "address": "matara"",
-    "age": "60"",
-    "nic": "000"",
-    "role": "fishermen"
+    "FishermenId": 2,
+    
+    "FIDivision": "North",
+    "FDistrict": "Matara",
+    "Surname": "imalsha",
+    "FZone": "PG89998",
+    "Occupation":"Owner"
+    
 }
 
 ###
 DELETE http://localhost:5000/fishermen/3
 ###
+
+
 POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "fullname": "Ravindu"",
-    "address": "matara"",
-    "age": "56"",
-    "nic": "000"",
-    "role": "fishermen"
+     "uid": 1,
+    "Surname": "Lasitha Lankajeewa",
+    "FDivision": "South",
+    "FDistrict": "Galle",
+    "FZone": "PG8958",
+    "Occupation":"fishermen
 }
 
 ###
@@ -122,15 +128,15 @@ GET http://localhost:5000/boats
 GET http://localhost:5000/boats/owner/1
 
 ###
-POST http://localhost:5000/boats
+POST http://localhost:5000/boat
 Content-Type: application/json
 
 {
-    "owner_id": 1,
-    "BoatName": "Morning"",
-    "BoatRg": "445098v"",
-    "BoatType": "NTRB"",
-    "InsuarnaceNo": "394879"",
+    "owner_id": 3,
+    "BoatName": "Morning",
+    "BoatRg": "445098v",
+    "BoatType": "NTRB",
+    "InsuaranceNo": "394879",
     "FOpType": "Internal"
     
 }
