@@ -1,9 +1,27 @@
 const router = require("express").Router();
+const { user } = require("../models");
 const db = require("../models");
 const Fishermen = db.fishermen;
 
+router.get("/user/:id", async (req, res) => {
+  Fishermen.findAll({
+    where: {
+      FishermenId: req.params.id,
+    },
+    include: user,
+  })
+    .then((fishermen) => {
+      res.json(fishermen);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
 router.get("/", async (req, res) => {
-  Fishermen.findAll()
+  Fishermen.findAll({
+    include: user,
+  })
     .then((fishermen) => {
       res.json(fishermen);
     })
@@ -15,8 +33,8 @@ router.get("/", async (req, res) => {
 // create fishermen
 router.post("/", (req, res) => {
   Fishermen.create({
-    userUid: req.body.uid,
-    FDivision: req.body.FIDivision,
+    FishermenId: req.body.FishermenId,
+    FIDivision: req.body.FIDivision,
     GNDivision: req.body.GNDivision,
     DSDivision: req.body.DSDivision,
     FDistrict: req.body.FDistrict,
@@ -36,7 +54,7 @@ router.post("/", (req, res) => {
     Children: req.body.Children,
     Dependent: req.body.Dependent,
     Photo: req.body.Photo,
-    Sign: req.body,
+    Sign: req.body.Sign,
   })
     .then((newfishermen) => {
       res.status(201).json(newfishermen);

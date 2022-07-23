@@ -1,28 +1,95 @@
 GET http://localhost:5000/stat/user
 
 ###
-GET http://localhost:5000/owner
+GET http://localhost:5000/profile/1
+
 
 ###
-POST http://localhost:5000/owner
+POST http://localhost:5000/profile/1
 Content-Type: application/json
 
 {
-    "userUid": "4",
-    "FDivision": "Galle",
+    "ProfileUrl": "http://localhost:5000/profile/1"
+}
+###
+GET http://localhost:5000/owner/
+
+###
+GET http://localhost:5000/owner/boat/1
+
+###
+POST http://localhost:5000/owner/
+Content-Type: application/json
+
+{
+    "userUid": "2",
+    "FDivision": "Matara",
     "GNDivision": "",
     "DSDivision": "Akmeemana",
-    "FDistrict": "Galle",
+    "FDistrict": "Matara",
     "Surname": "Silva",
     "OtherNames": "OtherNames",
     "NicNo": "9809800V"
+}
+###
+PATCH http://localhost:5000/owner/1
+Content-Type: application/json
+
+{
+    "uid": "1"
+}
+
+###
+GET http://localhost:5000/triplog/1
+
+###
+POST http://localhost:5000/triplog/
+Content-Type: application/json
+
+{
+      "boatId": "1",
+      "WesselID": "445098v",
+      "SkipperID": "1",
+      "Harbor": "Matara",
+      "DepartureDate": "2022-07-30",
+      "DepartureTime": "04:19:30",
+      "GearType": "",
+      "MainLine": "200",
+      "BranchLine": "100",
+      "HookNo": "100",
+      "HookTypes": "large",
+      "Depth": "10",
+      "Bait": "squid"
+}
+
+
+###
+GET http://localhost:5000/catch/
+
+###
+POST http://localhost:5000/catch/
+Content-Type: application/json
+
+{
+      "tripID": "1",
+      "FishingDate": "05-07-2022",
+      "FishingTime": "20:02:44",
+      "GPSPoint": {
+        "start":{"long": "89.256",
+        "lat": "70"},
+        "end": {
+            "long": "100",
+        "lat": "9.99"
+        }
+      },
+      "Catch": [{"FishType": "SpearFish","FishSubType": "BlueFin", "Qty": "30", "Weight": "100"},{"FishType": "Tuna","FishSubType": "YellowFine", "Qty": "20", "Weight": "50"}]
 }
 
 ###
 GET http://localhost:5000/fishermen/3
 
 ###
-PATCH http://localhost:5000/fishermen/2
+POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
@@ -36,15 +103,26 @@ Content-Type: application/json
 ###
 DELETE http://localhost:5000/fishermen/3
 ###
+
+
 POST http://localhost:5000/fishermen
 Content-Type: application/json
 
 {
-    "fullname": "Ravindu",
-    "address": "matara",
-    "age": "56",
-    "nic": "000",
-    "role": "fishermen"
+    "uid": "4",
+    "FDivision": "Matara",
+    "GNDivision": "",
+    "DSDivision": "Walgama",
+    "FDistrict": "Matara",
+    "Surname": "Arachchi",
+    "OtherNames": "Gamage",
+    "NicNo": "9809800V",
+    "BoatCat": ["IMUL","NTRB","IDAY"],
+    "NumofBoats": 9,
+    "FZone": ["internal"],
+    "OccuType": "Full Time",
+    "FOpType": "One Day",
+    "AssocAct": "Supply"
 }
 
 ###
@@ -52,10 +130,10 @@ GET http://localhost:5000/boats
 
 
 ###
-GET http://localhost:5000/boats/all
+GET http://localhost:5000/boats/owner/1
 
 ###
-POST http://localhost:5000/boats
+POST http://localhost:5000/boat
 Content-Type: application/json
 
 {
@@ -108,11 +186,11 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "admin" ,
-    "email" : "admin@gmail.com",
+    "fullname" : "owner" ,
+    "email" : "maxalag876@serosin.com",
     "phone" : "05888888",
-    "password" : "adminn",
-    "roles" : ["user","admin"]
+    "password" : "owner",
+    "roles" : ["user", "owner"]
 }
 
 
@@ -196,7 +274,7 @@ Content-Type: application/json
     "email" : "kylypylo@acrossgracealley.com",
     "phone" : "05888888",
     "password" : "ownerr",
-    "roles" : ["user","moderator"]
+    "roles" : ["user","owner"]
 }
 ###
 POST https://serene-woodland-83390.herokuapp.com/api/auth/signin

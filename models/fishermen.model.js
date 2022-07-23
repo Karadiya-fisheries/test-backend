@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     FZone: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     Occupation: {
       type: DataTypes.STRING,
@@ -62,9 +62,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     Dependent: {
       type: DataTypes.ARRAY(DataTypes.JSON),
-    },
-    Photo: {
-      type: DataTypes.STRING,
     },
     Sign: {
       type: DataTypes.STRING,

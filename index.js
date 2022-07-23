@@ -12,6 +12,8 @@ const triplogRoute = require("./routes/triplog.routes");
 const ownerRoute = require("./routes/owner.routes");
 const statRoute = require("./routes/stat.routes");
 const queryRoute = require("./routes/query.routes");
+const profileRoute = require("./routes/profile.routes");
+
 const app = express();
 
 app.use(cors());
@@ -29,7 +31,7 @@ const { owner } = require("./models");
 const Role = db.role;
 
 db.sequelize.sync();
-// ({ force: true }).then(() => {
+//({ force: true }).then(() => {
 //   initial();
 // });
 
@@ -41,23 +43,24 @@ db.sequelize.sync();
 
 //   Role.create({
 //     id: 2,
-//     name: "moderator",
+//     name: "owner",
 //   });
 
 //   Role.create({
 //     id: 3,
-//     name: "admin",
+//     name: "officer",
 //   });
 // }
 
 app.use("/fishermen", fishermenRoute);
-app.use("/boats", boatRoute);
-app.use("/catches", catchRoute);
+app.use("/boat", boatRoute);
+app.use("/catch", catchRoute);
 app.use("/departure", departureRoute);
 app.use("/owner", ownerRoute);
 app.use("/triplog", triplogRoute);
 app.use("/stat", statRoute);
 app.use("/query", queryRoute);
+app.use("/profile", profileRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 
