@@ -54,7 +54,7 @@ router.post("/", (req, res) => {
     Children: req.body.Children,
     Dependent: req.body.Dependent,
     Photo: req.body.Photo,
-    Sign: req.body,
+    Sign: req.body.Sign,
   })
     .then((newfishermen) => {
       res.status(201).json(newfishermen);
