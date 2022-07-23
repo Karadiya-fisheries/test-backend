@@ -171,12 +171,10 @@ exports.forgot_password = (req, res) => {
             console.log("Message %s sent: %s", info.messageId, info.response);
           }
         );
-        return res
-          .status(404)
-          .send({
-            message:
-              "Email is not recognized on database,\n For more infromation check the email",
-          });
+        return res.status(404).send({
+          message:
+            "Email is not recognized on database,\n For more infromation check the email",
+        });
       }
 
       jwt.sign(

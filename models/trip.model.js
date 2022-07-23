@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     SkipperID: {
       type: DataTypes.STRING,
     },
+    WesselID: {
+      type: DataTypes.STRING,
+    },
+    Harbor: {
+      type: DataTypes.STRING,
+    },
     DepartureDate: {
       type: DataTypes.DATEONLY,
     },

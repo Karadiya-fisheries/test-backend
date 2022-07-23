@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { owner } = require("../models");
 const db = require("../models");
 const Catch = db.catch;
 const TripLog = db.triplog;
