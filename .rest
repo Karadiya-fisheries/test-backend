@@ -179,21 +179,33 @@ Content-Type: application/json
     "val1" : "rock"
 }
 
+###
+GET http://localhost:5000/notice
 
 ###
 POST http://localhost:5000/notice
 Content-Type: application/json
 
 {
-    "owner_id": 1,
-    "BoatName": "Morning",
-    "BoatRg": "445098v",
-    "BoatType": "NTRB",
-    "InsuarnaceNo": "394879",
-    "FOpType": "Internal"
+    "uid": 4,
+    "NoticeTitle": "COMMERCIAL - Salmon: Gill Net",
+    "NoticeCover": "/static/mock-images/covers/cover_7.jpg",
+    "NoticeCat": "Notice",
+    "NoticeText": "Gill nets open 06:00 to 22:00 hours, July 25, 2022 and July 26, 2022 in subareas, 4-4, a portion of 4-9 east of a line running from Morrell Pt to South Rachel Island Light to the flashing red light on Lucy Island thence true north to the 4-5 boundary, thence east to Ryan Pt, 4-12, and 4-15.",
+    "NoticeView": 0
     
 }
 
+###
+DELETE http://localhost:5000/notice/2
+
+###
+POST http://localhost:5000/notice/view/1
+Content-Type: application/json
+
+{
+    "NoticeView": "1"
+}
 
 ###
 POST http://localhost:5000/api/auth/signup
