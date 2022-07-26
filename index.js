@@ -13,6 +13,7 @@ const ownerRoute = require("./routes/owner.routes");
 const statRoute = require("./routes/stat.routes");
 const queryRoute = require("./routes/query.routes");
 const profileRoute = require("./routes/profile.routes");
+const noticeRoute = require("./routes/notice.routes");
 
 const app = express();
 
@@ -61,6 +62,7 @@ app.use("/triplog", triplogRoute);
 app.use("/stat", statRoute);
 app.use("/query", queryRoute);
 app.use("/profile", profileRoute);
+app.use("/notice", noticeRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 
