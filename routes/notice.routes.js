@@ -14,6 +14,21 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/:id", async (req, res) => {
+  Notice.findOne({
+    where: {
+      NoticeId: req.params.id,
+    },
+    include: user,
+  })
+    .then((notice) => {
+      res.json(notice);
+    })
+    .catch((err) => {
+      res.status(404).json({ message: err });
+    });
+});
+
 router.post("/view/:id", async (req, res) => {
   Notice.update(
     { NoticeView: req.body.NoticeView },

@@ -180,7 +180,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/notice
+GET http://localhost:5000/notice/3
 
 ###
 POST http://localhost:5000/notice
