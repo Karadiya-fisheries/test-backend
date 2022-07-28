@@ -41,7 +41,7 @@ db.triplog = require("./trip.model.js")(sequelize, DataTypes);
 db.departure = require("./departure.model.js")(sequelize, DataTypes);
 db.owner = require("./owner.model.js")(sequelize, DataTypes);
 db.catch = require("./catch.model")(sequelize, DataTypes);
-
+db.notice = require("./notice.model")(sequelize, DataTypes);
 db.role.belongsToMany(db.user, {
   through: "user_roles",
   foreignKey: "roleId",
@@ -70,6 +70,9 @@ db.catch.belongsTo(db.triplog);
 
 db.boat.hasMany(db.departure);
 db.departure.belongsTo(db.boat);
+
+db.user.hasMany(db.notice);
+db.notice.belongsTo(db.user);
 
 db.ROLES = ["user", "owner", "officer"];
 
