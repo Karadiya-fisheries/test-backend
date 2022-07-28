@@ -34,7 +34,6 @@ router.get("/", async (req, res) => {
 router.post("/", (req, res) => {
   Fishermen.create({
     userUid: req.body.uid,
-    FishermenId: req.body.FishermenId,
     FIDivision: req.body.FIDivision,
     GNDivision: req.body.GNDivision,
     DSDivision: req.body.DSDivision,
