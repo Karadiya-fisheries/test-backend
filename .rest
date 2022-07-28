@@ -86,7 +86,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/fishermen/3
+GET http://localhost:5000/fishermen
 
 ###
 PATCH http://localhost:5000/fishermen/2

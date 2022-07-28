@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { owner } = require("../models");
+const { owner, role } = require("../models");
 const db = require("../models");
 const Catch = db.catch;
 const TripLog = db.triplog;
@@ -20,7 +20,7 @@ router.get("/catch/count", async (req, res) => {
 });
 
 router.get("/user", async (req, res) => {
-  User.findAll()
+  User.findAll({ include: role })
     .then((count) => {
       res.json(count);
     })
