@@ -43,6 +43,30 @@ router.post("/view/:id", async (req, res) => {
     });
 });
 
+router.post("/cover/:id", async (req, res) => {
+  Notice.update(
+    { NoticeCover: req.body.NoticeCover },
+    { where: { NoticeId: req.params.id } }
+  )
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json({ message: err });
+    });
+});
+
+router.get("/cover/:id", async (req, res) => {
+  Notice.findOne({
+    where: {
+      NoticeId: req.params.id,
+    },
+  }).then((notice) => {
+    res.send(notice.NoticeCover);
+  });
+});
+
 // create notice
 router.post("/", (req, res) => {
   const uid = req.body.uid;

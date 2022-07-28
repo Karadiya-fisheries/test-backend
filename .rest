@@ -208,6 +208,18 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:5000/notice/cover/4
+Content-Type: application/json
+
+{
+    "NoticeCover": "/static/mock-images/covers/cover_7.jpg"
+}
+
+###
+GET http://localhost:5000/notice/cover/4
+
+
+###
 POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
