@@ -331,3 +331,30 @@ GET http://localhost:5000/stat/user/count
 
 ###
 GET http://localhost:5000/query/pending/departure/count
+
+###
+GET https://serene-woodland-83390.herokuapp.com/fishermen
+
+###
+POST https://serene-woodland-83390.herokuapp.com/fishermen
+Content-Type: application/json
+
+{
+    "uid": "1",
+    "FDivision": "Matara",
+    "GNDivision": "",
+    "DSDivision": "Walgama",
+    "FDistrict": "Matara",
+    "Surname": "Arachchi",
+    "OtherNames": "Gamage",
+    "NicNo": "9809800V",
+    "BoatCat": ["IMUL","NTRB","IDAY"],
+    "NumofBoats": 9,
+    "FZone": ["International"],
+    "OccuType": "Full Time",
+    "FOpType": "One Day",
+    "AssocAct": "Supply"
+}
+
+###
+DELETE http://localhost:5000/fishermen/
