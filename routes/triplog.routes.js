@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
 // create TripLog
 router.post("/", (req, res) => {
   Boat.findOne({
-    boatId: req.body.boatID,
+    BoatRg: req.body.BoatRg,
   }).then((boat) => {
     TripLog.create({
       boatBoatId: boat.boatId,
