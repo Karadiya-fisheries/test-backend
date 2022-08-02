@@ -4,6 +4,24 @@ const db = require("../models");
 const Notice = db.notice;
 const User = db.user;
 
+const { Op } = require("sequelize");
+router.get("/weekly", async (req, res) => {
+  Notice.findAll({
+    where: {
+      createdAt: {
+        [Op.lte]: new Date(),
+        [Op.gte]: new Date(new Date() - 7 * 24 * 60 * 60 * 1000),
+      },
+    },
+  })
+    .then((record) => {
+      res.json(record);
+    })
+    .catch((error) => {
+      res.status(400).json("message : " + error);
+    });
+});
+
 router.get("/", async (req, res) => {
   Notice.findAll({ include: user })
     .then((notice) => {

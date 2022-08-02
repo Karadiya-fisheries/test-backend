@@ -4,9 +4,9 @@ const db = require("../models");
 const Owner = db.owner;
 
 router.get("/boat/:id", async (req, res) => {
-  Owner.findAll({
+  Owner.findOne({
     where: {
-      OwnerId: req.params.id,
+      userUid: req.params.id,
     },
     include: boat,
   })
@@ -21,7 +21,7 @@ router.get("/boat/:id", async (req, res) => {
 router.get("/user/:id", async (req, res) => {
   Owner.findAll({
     where: {
-      OwnerId: req.params.id,
+      userUid: req.params.id,
     },
     include: user,
   })
@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
 router.post("/", (req, res) => {
   Owner.create({
     userUid: req.body.uid,
-    FDivision: req.body.FIDivision,
+    FIDivision: req.body.FIDivision,
     GNDivision: req.body.GNDivision,
     DSDivision: req.body.DSDivision,
     FDistrict: req.body.FDistrict,

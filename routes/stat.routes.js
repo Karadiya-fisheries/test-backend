@@ -8,6 +8,23 @@ const Owner = db.owner;
 const Fishermen = db.fishermen;
 const Departure = db.departure;
 const Boat = db.boat;
+const { Op } = require("sequelize");
+router.get("/daily/catch", async (req, res) => {
+  Catch.findAll({
+    where: {
+      createdAt: {
+        [Op.lte]: new Date(),
+        [Op.gte]: new Date(new Date() - 24 * 60 * 60 * 1000),
+      },
+    },
+  })
+    .then((record) => {
+      res.json(record);
+    })
+    .catch((error) => {
+      res.status(400).json("message : " + error);
+    });
+});
 
 router.get("/catch/count", async (req, res) => {
   Catch.count()
@@ -28,6 +45,31 @@ router.get("/user", async (req, res) => {
       res.status(400).json("message :" + error);
     });
 });
+
+// router.delete("/user/:id", async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     const userDeleted = await User.destroy({
+//       where: {
+//         uid: id,
+//       },
+//     });
+//     res.status(201).json(userDeleted);
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// });
+
+// router.post("/user/:id", async (req, res) => {
+//   User.update({ confirm: req.body.confirm }, { where: { uid: req.params.id } })
+//     .then((result) => {
+//       res.json(result);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(404).json({ message: err });
+//     });
+// });
 
 router.get("/user/count", async (req, res) => {
   User.count()

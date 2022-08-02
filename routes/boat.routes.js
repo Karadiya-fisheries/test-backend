@@ -15,11 +15,10 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/owner/:id", async (req, res) => {
-  Boat.findOne({
+  Boat.findAll({
     where: {
       ownerOwnerId: req.params.id,
     },
-    include: owner,
   })
     .then((boat) => {
       res.json(boat);

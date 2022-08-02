@@ -14,6 +14,7 @@ const statRoute = require("./routes/stat.routes");
 const queryRoute = require("./routes/query.routes");
 const profileRoute = require("./routes/profile.routes");
 const noticeRoute = require("./routes/notice.routes");
+const activityRoute = require("./routes/actitvity.routes");
 
 const app = express();
 
@@ -63,6 +64,7 @@ app.use("/stat", statRoute);
 app.use("/query", queryRoute);
 app.use("/profile", profileRoute);
 app.use("/notice", noticeRoute);
+app.use("/activity", activityRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 

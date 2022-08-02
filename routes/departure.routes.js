@@ -3,7 +3,7 @@ const db = require("../models");
 const Departure = db.departure;
 const Boat = db.boat;
 router.get("/", async (req, res) => {
-  Departure.findAll({ order: [["departureId"]] })
+  Departure.findAll({ order: [["DepartureId"]] })
     .then((departure) => {
       res.json(departure);
     })

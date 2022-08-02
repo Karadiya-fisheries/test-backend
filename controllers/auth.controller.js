@@ -118,6 +118,7 @@ exports.signin = (req, res) => {
           fullname: user.fullname,
           email: user.email,
           roles: authorities,
+          profileUrl: user.profileUrl,
           accessToken: token,
         });
       });
