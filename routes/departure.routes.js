@@ -15,17 +15,19 @@ router.get("/", async (req, res) => {
 // create departure
 router.post("/", (req, res) => {
   Boat.findOne({
-    boatId: req.body.BoatId,
+    where: {
+      BoatRg: req.body.Imul,
+    },
   }).then((boat) => {
     Departure.create({
       boatBoatId: boat.boatId,
       Imul: req.body.Imul,
       OwnerName: req.body.OwnerName,
-      PhNum: req.body.PhNum,
+      TelNo: req.body.TelNo,
       Email: req.body.Email,
       SkipperName: req.body.SkipperName,
       SkipperNic: req.body.SkipperNic,
-      SkipperNum: req.body.SkipperNum,
+      SkipperNo: req.body.SkipperNo,
       DepartingPort: req.body.DepartingPort,
       FishingZone: req.body.FishingZone,
       MLength: req.body.MLength,
@@ -39,7 +41,7 @@ router.post("/", (req, res) => {
       InterOpLicense: req.body.InterOpLicense,
       RadioStation: req.body.RadioStation,
       Frequency: req.body.Frequency,
-      VMS: req.body.VMS,
+      Vms: req.body.Vms,
     })
       .then((newDeparture) => {
         res.status(201).json(newDeparture);

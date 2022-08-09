@@ -139,7 +139,7 @@ Content-Type: application/json
 }
 
 ###
-GET https://serene-woodland-83390.herokuapp.com/boat
+GET http://localhost:5000/boat
 
 
 ###
@@ -266,18 +266,18 @@ Content-Type: application/json
 GET http://localhost:5000/departure
 ###
 
-POST https://serene-woodland-83390.herokuapp.com/departure
+POST http://localhost:5000/departure
 Content-Type: application/json
 
 {   "boatId": 1,
-    "Imul": "IMUL-3888",
+    "Imul": "IMUL-456",
     "OwnerName": "Tharindu Kanchana",
-    "PhNum": "077678889",
+    "TelNo": "077678889",
     "Email": "7tharindugalle@gmail.com",
-    "SkipperName": "Hellowrold",
-    "SkipperNic": "23677888",
-    "SkipperNum": "der5543",
-    "DepartingPort": "Negambo",
+    "SkipperName": "Rivindu",
+    "SkipperNic": "22327888",
+    "SkipperNo": "sk30000",
+    "DepartingPort": "Galle",
     "FishingZone": "Internationl",
     "MLength": 7,
     "CrewDetails": [
@@ -288,8 +288,26 @@ Content-Type: application/json
         {
             "name": "Kamal",
             "nic": "89009009v"
+        },
+        {
+            "name": "Sirmal",
+            "nic": "998000902"
+        }
+        ,
+        {
+            "name": "Nimal",
+            "nic": "30909090"
+        },
+        {
+            "name": "Silva",
+            "nic": "23090901"
+        },
+        {
+            "name": "Kamal",
+            "nic": "89009009v"
         }
     ]
+
 }
 
 ###
