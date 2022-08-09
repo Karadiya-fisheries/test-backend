@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
         BoatName: req.body.BoatName,
         BoatRg: req.body.BoatRg,
         BoatType: req.body.BoatType,
-        InsuaranceNo: req.body.InsuaranceNo,
+        InsuaranceNO: req.body.InsuaranceNO,
         FOpType: req.body.FOpType,
       })
         .then((newboat) => {

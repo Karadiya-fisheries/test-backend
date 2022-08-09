@@ -15,10 +15,10 @@ router.get("/", async (req, res) => {
 // create departure
 router.post("/", (req, res) => {
   Boat.findOne({
-    boatId: req.body.BoatID,
+    boatId: req.body.BoatId,
   }).then((boat) => {
     Departure.create({
-      boatboatId: boat.boatId,
+      boatBoatId: boat.boatId,
       Imul: req.body.Imul,
       OwnerName: req.body.OwnerName,
       PhNum: req.body.PhNum,
@@ -34,7 +34,7 @@ router.post("/", (req, res) => {
       CEyeSize: req.body.CEyeSize,
       NettingLength: req.body.NettingLength,
       NetEyeSize: req.body.NetEyeSize,
-      CrewDetail: req.body.CrewDetail,
+      CrewDetails: req.body.CrewDetails,
       LocalOpLicense: req.body.LocalOpLicense,
       InterOpLicense: req.body.InterOpLicense,
       RadioStation: req.body.RadioStation,
