@@ -56,7 +56,7 @@ Content-Type: application/json
 GET http://localhost:5000/triplog/1
 
 ###
-POST http://localhost:5000/triplog/
+POST https://serene-woodland-83390.herokuapp.com/triplog/
 Content-Type: application/json
 
 {
@@ -82,11 +82,11 @@ GET http://localhost:5000/stat/daily/catch
 GET http://localhost:5000/catch/
 
 ###
-POST http://localhost:5000/catch/
+POST https://serene-woodland-83390.herokuapp.com/catch/
 Content-Type: application/json
 
 {
-      "tripIDD": "1",
+      "tripId": "1",
       "FishingDate": "2022-07-1",
       "FishingTime": "20:02:44",
       "GPSPoint": {
@@ -139,14 +139,14 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/boats
+GET https://serene-woodland-83390.herokuapp.com/boat
 
 
 ###
 GET http://localhost:5000/boats/owner/1
 
 ###
-POST http://localhost:5000/boats
+POST https://serene-woodland-83390.herokuapp.com/boats
 Content-Type: application/json
 
 {
@@ -266,19 +266,30 @@ Content-Type: application/json
 GET http://localhost:5000/departure
 ###
 
-POST http://localhost:5000/departure
+POST https://serene-woodland-83390.herokuapp.com/departure
 Content-Type: application/json
 
-{   "boatboatId": 1,
-    "Imul": "34343",
-    "OwnerName": "officer",
-    "PhNum": "34323v",
-    "Email": "heoolo@gmail.com",
+{   "boatId": 1,
+    "Imul": "IMUL-3888",
+    "OwnerName": "Tharindu Kanchana",
+    "PhNum": "077678889",
+    "Email": "7tharindugalle@gmail.com",
     "SkipperName": "Hellowrold",
     "SkipperNic": "23677888",
     "SkipperNum": "der5543",
     "DepartingPort": "Negambo",
-    "FishingZone": "Internationl"
+    "FishingZone": "Internationl",
+    "MLength": 7,
+    "CrewDetails": [
+        {
+            "name": "Amal",
+            "nic": "78090980v"
+        },
+        {
+            "name": "Kamal",
+            "nic": "89009009v"
+        }
+    ]
 }
 
 ###
