@@ -20,10 +20,6 @@ router.get("/:id", async (req, res) => {
     where: {
       userUid: req.params.id,
     },
-    attributes: [
-      "ActivityTitle",
-      [sequelize.literal(`DATE("createdAt")`), "date"],
-    ],
   })
     .then((Activity) => {
       res.json(Activity);
