@@ -3,6 +3,7 @@ const { user } = require("../models");
 const db = require("../models");
 const Activity = db.activity;
 const User = db.user;
+const sequelize = require("sequelize");
 
 router.get("/", async (req, res) => {
   Activity.findAll({ include: user })
@@ -19,6 +20,10 @@ router.get("/:id", async (req, res) => {
     where: {
       userUid: req.params.id,
     },
+    attributes: [
+      "ActivityTitle",
+      [sequelize.literal(`DATE("createdAt")`), "date"],
+    ],
   })
     .then((Activity) => {
       res.json(Activity);

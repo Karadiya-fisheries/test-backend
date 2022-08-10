@@ -139,7 +139,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/boat
+GET https://serene-woodland-83390.herokuapp.com/boat
 
 
 ###
@@ -263,14 +263,14 @@ Content-Type: application/json
 }
 ###
 ###
-GET http://localhost:5000/departure
+GET https://serene-woodland-83390.herokuapp.com/departure
 ###
 
-POST http://localhost:5000/departure
+POST https://serene-woodland-83390.herokuapp.com/departure
 Content-Type: application/json
 
 {   "boatId": 1,
-    "Imul": "IMUL-456",
+    "Imul": "IMUL-3888",
     "OwnerName": "Tharindu Kanchana",
     "TelNo": "077678889",
     "Email": "7tharindugalle@gmail.com",
@@ -280,6 +280,9 @@ Content-Type: application/json
     "DepartingPort": "Galle",
     "FishingZone": "Internationl",
     "MLength": 7,
+    "CNetLength": 100,
+    "NetEyeSize": 10,
+    "NoThorns": 1000,
     "CrewDetails": [
         {
             "name": "Amal",
@@ -323,7 +326,7 @@ Content-Type: application/json
 GET http://localhost:5000/departure/1
 
 ###
-DELETE http://localhost:5000/departure/2
+DELETE https://serene-woodland-83390.herokuapp.com/departure/2
 
 
 ###

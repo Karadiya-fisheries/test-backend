@@ -79,7 +79,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const deletedDeparture = await Departure.destroy({
       where: {
-        departureId: id,
+        DepartureId: id,
       },
     });
     res.status(201).json(deletedDeparture);
