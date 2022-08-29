@@ -3,8 +3,9 @@ const { user } = require("../models");
 const db = require("../models");
 const Notice = db.notice;
 const User = db.user;
-
+const io = require("../index");
 const { Op } = require("sequelize");
+
 router.get("/weekly", async (req, res) => {
   Notice.findAll({
     where: {
@@ -53,6 +54,7 @@ router.post("/view/:id", async (req, res) => {
     { where: { NoticeId: req.params.id } }
   )
     .then((result) => {
+      io.bro;
       res.json(result);
     })
     .catch((err) => {

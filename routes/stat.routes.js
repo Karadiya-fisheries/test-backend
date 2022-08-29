@@ -46,6 +46,20 @@ router.get("/user", async (req, res) => {
     });
 });
 
+router.get("/user/:id", async (req, res) => {
+  User.findOne({
+    where: {
+      uid: req.params.id,
+    },
+  })
+    .then((count) => {
+      res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
 // router.delete("/user/:id", async (req, res) => {
 //   const { id } = req.params;
 //   try {
@@ -60,16 +74,16 @@ router.get("/user", async (req, res) => {
 //   }
 // });
 
-// router.post("/user/:id", async (req, res) => {
-//   User.update({ confirm: req.body.confirm }, { where: { uid: req.params.id } })
-//     .then((result) => {
-//       res.json(result);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(404).json({ message: err });
-//     });
-// });
+router.post("/user/:id", async (req, res) => {
+  User.update({ confirm: req.body.confirm }, { where: { uid: req.params.id } })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json({ message: err });
+    });
+});
 
 router.get("/user/count", async (req, res) => {
   User.count()

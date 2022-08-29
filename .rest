@@ -1,9 +1,19 @@
 GET http://localhost:5000/stat/user
+
+###
+POST http://localhost:5000/chat/
+Content-Type: application/json
+
+{
+    "sid": 1,
+    "rid": 11
+}
+
 ###
 DELETE http://localhost:5000/stat/user/8
 
 ###
-POST http://localhost:5000/stat/user/11
+POST http://localhost:5000/stat/user/1
 Content-Type: application/json
 
 {

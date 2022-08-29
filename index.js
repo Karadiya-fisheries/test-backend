@@ -3,7 +3,10 @@ const cors = require("cors");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 const cookieParser = require("cookie-parser");
+
 const fishermenRoute = require("./routes/fishermen.routes");
 const boatRoute = require("./routes/boat.routes");
 const catchRoute = require("./routes/catch.routes");
@@ -15,6 +18,7 @@ const queryRoute = require("./routes/query.routes");
 const profileRoute = require("./routes/profile.routes");
 const noticeRoute = require("./routes/notice.routes");
 const activityRoute = require("./routes/actitvity.routes");
+const chatRoute = require("./routes/chat.routes");
 
 const app = express();
 
@@ -65,9 +69,21 @@ app.use("/query", queryRoute);
 app.use("/profile", profileRoute);
 app.use("/notice", noticeRoute);
 app.use("/activity", activityRoute);
+app.use("/chat", chatRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+const controller = require("./controllers/socket.controller");
 
-module.exports = app.listen(process.env.PORT || 5000, () => {
+var user = new Map();
+controller.newSocketConn(io, user);
+console.log(user);
+
+httpServer.listen(process.env.PORT || 5000, () => {
   console.log("Server started on http://localhost:5000");
 });
