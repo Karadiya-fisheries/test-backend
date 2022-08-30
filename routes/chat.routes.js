@@ -5,18 +5,29 @@ const Chat = db.chat;
 const { Op } = require("sequelize");
 router.post("/", async (req, res) => {
   const sid = req.body.sid.toString();
+  const rid = req.body.rid;
   Chat.findAll({
     where: {
-      [Op.and]: [
+      [Op.or]: [
         {
-          ChatReci: {
-            [Op.or]: [sid, req.body.rid],
-          },
+          [Op.and]: [
+            {
+              ChatReci: sid,
+            },
+            {
+              ChatSend: rid,
+            },
+          ],
         },
         {
-          ChatSend: {
-            [Op.or]: [sid, req.body.rid],
-          },
+          [Op.and]: [
+            {
+              ChatReci: rid,
+            },
+            {
+              ChatSend: sid,
+            },
+          ],
         },
       ],
     },
