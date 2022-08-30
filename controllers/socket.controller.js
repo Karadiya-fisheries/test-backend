@@ -11,19 +11,23 @@ exports.newSocketConn = (io, user) => {
     });
     socket.emit("checkOnline", Array.from(user.keys()));
     socket.on("sendMessage", (arg) => {
-      console.log("send Message");
-      Chat.create({
-        ChatReci: arg.rid,
-        ChatSend: arg.sid,
-        ChatMes: arg.message,
-      });
-      const reciID = user.get(parseInt(arg.rid));
-      console.log(reciID);
-      io.sockets.sockets.get(reciID).emit("recieveMessage", {
-        ChatReci: arg.rid,
-        ChatSend: arg.sid,
-        ChatMes: arg.message,
-      });
+      try {
+        console.log("send Message");
+        Chat.create({
+          ChatReci: arg.rid,
+          ChatSend: arg.sid,
+          ChatMes: arg.message,
+        });
+        const reciID = user.get(parseInt(arg.rid));
+        console.log(reciID);
+        io.sockets.sockets.get(reciID).emit("recieveMessage", {
+          ChatReci: arg.rid,
+          ChatSend: arg.sid,
+          ChatMes: arg.message,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     });
     socket.on("disconnect", () => {
       console.log("Disconnected : ", socket.id);
