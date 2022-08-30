@@ -75,7 +75,7 @@ require("./routes/user.routes")(app);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://karadiya-dashboard--pr14-activity-c8alwmcb.web.app",
+    origin: "https://karadiya-dashboard.web.app",
   },
 });
 const controller = require("./controllers/socket.controller");

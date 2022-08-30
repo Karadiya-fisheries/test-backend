@@ -36,10 +36,20 @@ router.get("/catch/count", async (req, res) => {
     });
 });
 
-router.get("/user", async (req, res) => {
-  User.findAll({ include: role })
+router.get("/user/count", async (req, res) => {
+  User.count()
     .then((count) => {
       res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
+router.get("/user", async (req, res) => {
+  User.findAll({ include: role })
+    .then((users) => {
+      res.json(users);
     })
     .catch((error) => {
       res.status(400).json("message :" + error);
@@ -52,8 +62,8 @@ router.get("/user/:id", async (req, res) => {
       uid: req.params.id,
     },
   })
-    .then((count) => {
-      res.json(count);
+    .then((ele) => {
+      res.json(ele);
     })
     .catch((error) => {
       res.status(400).json("message :" + error);
@@ -82,16 +92,6 @@ router.post("/user/:id", async (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(404).json({ message: err });
-    });
-});
-
-router.get("/user/count", async (req, res) => {
-  User.count()
-    .then((count) => {
-      res.json(count);
-    })
-    .catch((error) => {
-      res.status(400).json("message :" + error);
     });
 });
 
