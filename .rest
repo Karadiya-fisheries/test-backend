@@ -1,12 +1,12 @@
 GET http://localhost:5000/stat/user
 
 ###
-POST http://localhost:5000/chat/
+POST https://serene-woodland-83390.herokuapp.com/chat/
 Content-Type: application/json
 
 {
     "sid": 1,
-    "rid": 11
+    "rid": "6"
 }
 
 ###

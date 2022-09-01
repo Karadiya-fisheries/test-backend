@@ -19,7 +19,8 @@ const profileRoute = require("./routes/profile.routes");
 const noticeRoute = require("./routes/notice.routes");
 const activityRoute = require("./routes/actitvity.routes");
 const chatRoute = require("./routes/chat.routes");
-
+const lotRoute = require("./routes/lot.routes");
+const bidRoute = require("./routes/bid.routes");
 const app = express();
 
 app.use(cors());
@@ -37,7 +38,7 @@ const { owner } = require("./models");
 const Role = db.role;
 
 db.sequelize.sync();
-// ({ force: true }).then(() => {
+// ({ alter: true }).then(() => {
 //   initial();
 // });
 
@@ -56,6 +57,10 @@ db.sequelize.sync();
 //     id: 3,
 //     name: "officer",
 //   });
+//   Role.create({
+//     id: 4,
+//     name: "bidder",
+//   });
 // }
 
 app.use("/fishermen", fishermenRoute);
@@ -70,12 +75,14 @@ app.use("/profile", profileRoute);
 app.use("/notice", noticeRoute);
 app.use("/activity", activityRoute);
 app.use("/chat", chatRoute);
+app.use("/bid", bidRoute);
+app.use("/lot", lotRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://karadiya-dashboard.web.app",
+    origin: "http://localhost:3000",
   },
 });
 const controller = require("./controllers/socket.controller");
