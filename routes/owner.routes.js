@@ -19,7 +19,7 @@ router.get("/boat/:id", async (req, res) => {
 });
 
 router.get("/user/:id", async (req, res) => {
-  Owner.findAll({
+  Owner.findOne({
     where: {
       userUid: req.params.id,
     },

@@ -43,7 +43,7 @@ module.exports = function (app) {
           });
       });
 
-      res.redirect("https://karadiya-dashboard.web.app/login");
+      res.redirect("http://localhost:3000/login");
       res.end();
     } catch (e) {
       console.log(e);
