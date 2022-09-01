@@ -60,13 +60,11 @@ router.post("/", (req, res) => {
       res.status(201).json(newfishermen);
     })
     .catch((err) => {
-      res
-        .status(400)
-        .json({
-          message: err.message,
-          request: err.request,
-          response: err.response,
-        });
+      res.status(400).json({
+        message: err.message,
+        request: err.request,
+        response: err.response,
+      });
     });
 });
 

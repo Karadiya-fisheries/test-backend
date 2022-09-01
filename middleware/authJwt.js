@@ -45,6 +45,28 @@ isOfficer = (req, res, next) => {
     });
 };
 
+isBidder = (req, res, next) => {
+  User.findByPk(req.userId)
+    .then((user) => {
+      user.getRoles().then((roles) => {
+        for (let i = 0; i < roles.length; i++) {
+          if (roles[i].name === "bidder") {
+            next();
+            return;
+          }
+        }
+
+        res.status(403).send({
+          message: "Require Bidder Role!",
+        });
+        return;
+      });
+    })
+    .catch((err) => {
+      res.status(444).json({ message: err });
+    });
+};
+
 isOwner = (req, res, next) => {
   User.findByPk(req.userId).then((user) => {
     user.getRoles().then((roles) => {
@@ -62,7 +84,23 @@ isOwner = (req, res, next) => {
   });
 };
 
-isOwnerOrOfficer = (req, res, next) => {
+getOwnerID = (req, res, next) => {
+  owner
+    .findOne({
+      where: {
+        userUid: req.userId,
+      },
+    })
+    .then((Owner) => {
+      req.OwnerId = Owner.OwnerId;
+      next();
+    })
+    .catch((error) => {
+      res.status(403).json("message :" + error);
+    });
+};
+
+isOwnerOrBidder = (req, res, next) => {
   User.findByPk(req.userId).then((user) => {
     user
       .getRoles()
@@ -73,14 +111,14 @@ isOwnerOrOfficer = (req, res, next) => {
             return;
           }
 
-          if (roles[i].name === "officer") {
+          if (roles[i].name === "bidder") {
             next();
             return;
           }
         }
 
         res.status(403).send({
-          message: "Require Owner or Officer Role!",
+          message: "Require Owner or Bidder Role!",
         });
       })
       .catch((err) => {
@@ -93,6 +131,7 @@ const authJwt = {
   verifyToken: verifyToken,
   isOfficer: isOfficer,
   isOwner: isOwner,
-  isOwnerOrOfficer: isOwnerOrOfficer,
+  isOwnerOrBidder: isOwnerOrBidder,
+  getOwnerID: getOwnerID,
 };
 module.exports = authJwt;

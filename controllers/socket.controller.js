@@ -7,6 +7,7 @@ exports.newSocketConn = (io, user) => {
     socket.emit("notify", true);
     socket.on("getNotification", (arg) => {
       user.set(arg.id, arg.sid);
+      socket.broadcast.emit("joinedUser", arg.id);
       console.log(user);
     });
     socket.emit("checkOnline", Array.from(user.keys()));
