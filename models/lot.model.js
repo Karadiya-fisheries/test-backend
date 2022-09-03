@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     LotUnitPrice: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL(10, 2),
     },
     LotSize: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL(10, 2),
     },
     CurrentBid: {
       type: DataTypes.INTEGER,
@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     LotEndDate: {
       type: DataTypes.DATE,
+    },
+    FishLoadIndex: {
+      type: DataTypes.INTEGER,
     },
   });
 

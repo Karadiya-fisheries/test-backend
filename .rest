@@ -1,5 +1,19 @@
 GET http://localhost:5000/stat/user
 
+
+###
+GET http://localhost:5000/lot/2
+###
+POST http://localhost:5000/lot/catch/load/sum
+Content-Type: application/json
+
+{
+    "catchId": 1,
+    "loadIndex": 1
+}
+###
+DELETE http://localhost:5000/lot/1
+
 ###
 POST https://serene-woodland-83390.herokuapp.com/chat/
 Content-Type: application/json
@@ -9,11 +23,10 @@ Content-Type: application/json
     "rid": "6"
 }
 
-###
-DELETE http://localhost:5000/stat/user/8
+
 
 ###
-POST http://localhost:5000/stat/user/1
+POST http://localhost:5000/stat/user/16
 Content-Type: application/json
 
 {
@@ -238,19 +251,33 @@ GET http://localhost:5000/notice/cover/4
 
 ###
 GET http://localhost:5000/activity/11
+###
+DELETE http://localhost:5000/stat/user/15
 
 ###
 POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "owner" ,
-    "email" : "owner@gmail.com",
+    "fullname" : "bidder" ,
+    "email" : "larana3374@vpsrec.com",
     "phone" : "05888888",
-    "password" : "owner",
-    "roles" : ["user", "owner"]
+    "password" : "bidder",
+    "roles" : ["user", "bidder"]
 }
 
+###
+POST http://localhost:5000/bidder/
+Content-Type: application/json
+
+{
+    "uid": "16",
+    "nic": "9809800V",
+    "GNDivision": "hapugala",
+    "District": "Galle",
+    "TypeOfBusiness": "Export",
+    "BusinessName": "Fisheyr"
+}
 
 ###
 POST http://localhost:5000/api/auth/signup
@@ -347,11 +374,11 @@ POST http://localhost:5000/api/auth/signup
 Content-Type: application/json
 
 {
-    "fullname" : "admin" ,
-    "email" : "admin@gmail.com",
+    "fullname" : "bidr" ,
+    "email" : "larana3374@vpsrec.com",
     "phone" : "05888888",
-    "password" : "adminn",
-    "roles" : ["user","admin"]
+    "password" : "bideeerr",
+    "roles" : ["user","bidder"]
 }
 
 

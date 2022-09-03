@@ -70,19 +70,19 @@ router.get("/user/:id", async (req, res) => {
     });
 });
 
-// router.delete("/user/:id", async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const userDeleted = await User.destroy({
-//       where: {
-//         uid: id,
-//       },
-//     });
-//     res.status(201).json(userDeleted);
-//   } catch (err) {
-//     res.status(400).json({ message: err.message });
-//   }
-// });
+router.delete("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userDeleted = await User.destroy({
+      where: {
+        uid: id,
+      },
+    });
+    res.status(201).json(userDeleted);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
 
 router.post("/user/:id", async (req, res) => {
   User.update({ confirm: req.body.confirm }, { where: { uid: req.params.id } })

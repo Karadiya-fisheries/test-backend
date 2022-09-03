@@ -6,6 +6,7 @@ const Lot = db.lot;
 const User = db.user;
 const io = require("../index");
 const { Op } = require("sequelize");
+const { user } = require("../models");
 const Catch = db.catch;
 const Owner = db.owner;
 
@@ -26,8 +27,64 @@ router.get("/weekly", async (req, res) => {
     });
 });
 
+router.post("/catch/load", async (req, res) => {
+  console.log(req.body);
+  Lot.findAll({
+    where: {
+      [Op.and]: [
+        {
+          CatchRecordCatchId: req.body.catchId,
+        },
+        {
+          FishLoadIndex: req.body.loadIndex,
+        },
+      ],
+    },
+  })
+    .then((Lot) => {
+      res.json(Lot);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
+router.post("/catch/load/sum", async (req, res) => {
+  console.log(req.body);
+  Lot.sum("LotSize", {
+    where: {
+      [Op.and]: [
+        {
+          CatchRecordCatchId: req.body.catchId,
+        },
+        {
+          FishLoadIndex: req.body.loadIndex,
+        },
+      ],
+    },
+  })
+    .then((Lot) => {
+      res.json(Lot);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
 router.get("/", async (req, res) => {
-  Lot.findAll()
+  Lot.findAll({
+    include: [
+      {
+        model: Owner,
+        include: [
+          {
+            model: db.user,
+            attributes: ["fullname", "profileUrl"],
+          },
+        ],
+      },
+    ],
+  })
     .then((Lot) => {
       res.json(Lot);
     })
@@ -41,7 +98,17 @@ router.get("/:id", async (req, res) => {
     where: {
       LotId: req.params.id,
     },
-    include: [Owner, Catch],
+    include: [
+      {
+        model: Owner,
+        include: [
+          {
+            model: db.user,
+            attributes: ["uid", "phone", "email", "fullname", "profileUrl"],
+          },
+        ],
+      },
+    ],
   })
     .then((Lot) => {
       res.json(Lot);
@@ -82,14 +149,13 @@ router.post(
   (req, res) => {
     Lot.create({
       LotTitle: req.body.LotTitle,
-      LotCover: req.body.LotCover,
       LotUnitPrice: req.body.LotUnitPrice,
       LotSize: req.body.LotSize,
-      CurrentBid: req.body.CurrentBid,
       LotStartDate: req.body.LotStartDate,
       LotEndDate: req.body.LotEndDate,
       CatchRecordCatchId: req.body.CatchId,
-      ownerOwnerID: req.OwnerId,
+      ownerOwnerId: req.OwnerId,
+      FishLoadIndex: req.body.loadIndex,
     })
       .then((newLot) => {
         res.status(201).json(newLot);

@@ -75,7 +75,7 @@ app.use("/profile", profileRoute);
 app.use("/notice", noticeRoute);
 app.use("/activity", activityRoute);
 app.use("/chat", chatRoute);
-app.use("/bid", bidRoute);
+app.use("/bidder", bidRoute);
 app.use("/lot", lotRoute);
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
