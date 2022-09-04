@@ -6,10 +6,11 @@ const Lot = db.lot;
 const User = db.user;
 const io = require("../index");
 const { Op } = require("sequelize");
-const { user } = require("../models");
+const { user, lot, bidder } = require("../models");
 const Catch = db.catch;
 const Owner = db.owner;
-
+const bids = db.bid;
+const Bidder = db.bidder;
 router.get("/weekly", async (req, res) => {
   Lot.findAll({
     where: {
@@ -116,6 +117,47 @@ router.get("/:id", async (req, res) => {
     .catch((err) => {
       res.status(404).json({ message: err });
     });
+});
+
+router.get("/bids/:id", async (req, res) => {
+  Lot.findOne({
+    where: { LotId: req.params.id },
+    include: [
+      {
+        model: bidder,
+        include: [
+          {
+            model: db.user,
+            attributes: ["uid", "phone", "email", "fullname", "profileUrl"],
+          },
+        ],
+      },
+    ],
+  }).then((lotone) => {
+    res.json(lotone.bidders);
+  });
+});
+
+router.post("/bids/bidder/", async (req, res) => {
+  Lot.findOne({
+    where: { LotId: req.body.lid },
+    include: [
+      {
+        model: bidder,
+        where: {
+          BidderId: req.body.bid,
+        },
+        include: [
+          {
+            model: db.user,
+            attributes: ["uid", "phone", "email", "fullname", "profileUrl"],
+          },
+        ],
+      },
+    ],
+  }).then((lotone) => {
+    res.json(lotone);
+  });
 });
 
 router.post("/cover/:id", async (req, res) => {

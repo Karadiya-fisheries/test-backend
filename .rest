@@ -1,8 +1,17 @@
 GET http://localhost:5000/stat/user
 
+###
+GET  http://localhost:5000/lot/1
 
 ###
-GET http://localhost:5000/lot/2
+POST  http://localhost:5000/lot/bids/bidder
+Content-Type: application/json
+
+{
+    "lid": 1,
+    "bid": 1
+}
+
 ###
 POST http://localhost:5000/lot/catch/load/sum
 Content-Type: application/json
@@ -277,6 +286,16 @@ Content-Type: application/json
     "District": "Galle",
     "TypeOfBusiness": "Export",
     "BusinessName": "Fisheyr"
+}
+
+###
+POST http://localhost:5000/bidder/bid
+Content-Type: application/json
+
+{
+    "lotId": 1,
+    "bidderId": 1,
+    "bidPrice": 1600
 }
 
 ###

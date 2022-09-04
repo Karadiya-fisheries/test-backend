@@ -1,10 +1,11 @@
 const router = require("express").Router();
-const { user } = require("../models");
+const { user, lot, bidder } = require("../models");
 const db = require("../models");
 const Bidder = db.bidder;
 const User = db.user;
 const io = require("../index");
 const { Op } = require("sequelize");
+const bids = db.bid;
 
 router.get("/weekly", async (req, res) => {
   Bidder.findAll({
@@ -76,6 +77,21 @@ router.post("/", (req, res) => {
     .catch((err) => {
       res.status(400).json({ message: err.message });
     });
+});
+
+router.post("/bid", async (req, res) => {
+  const lotId = req.body.lotId;
+  const bidderId = req.body.bidderId;
+  const BidPrice = req.body.bidPrice;
+
+  const lot1 = await lot.findOne({ where: { LotId: lotId } });
+  const bidder1 = await bidder.findOne({ where: { BidderId: bidderId } });
+  lot1.addBidder(bidder1, { through: { BidPrice: BidPrice } }).then((bid) => {
+    lot1.CurrentBid = BidPrice;
+    lot1.save().then((updateBidder) => {
+      res.json(updateBidder);
+    });
+  });
 });
 
 //update a Bidder
