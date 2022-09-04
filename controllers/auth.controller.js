@@ -187,7 +187,7 @@ exports.forgot_password = (req, res) => {
           expiresIn: "1d",
         },
         (err, emailToken) => {
-          const url = `http://localhost:3000/reset_password/${emailToken}`;
+          const url = `https://karadiya-dashboard.web.app/reset_password/${emailToken}`;
 
           config.transporter.sendMail(
             {

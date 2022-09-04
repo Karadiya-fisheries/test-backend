@@ -46,8 +46,8 @@ exports.newSocketConn = (io, user) => {
           .addBidder(bidder1, { through: { BidPrice: BidPrice } })
           .then((bid) => {
             lot1.CurrentBid = BidPrice;
-            lot1.save().then((updateBidder) => {
-              console.log(updateBidder);
+            lot1.save().then((updateLot) => {
+              console.log(updateLot);
             });
           })
           .catch((err) => {
@@ -90,6 +90,50 @@ exports.newSocketConn = (io, user) => {
             //     .get(reciID)
             //     .emit("RecieveABid", lotone.bidders[0]);
           });
+      } catch (err) {
+        console.log(err);
+      }
+    });
+
+    socket.on("StartABid", async (arg) => {
+      try {
+        console.log("Starting a Bid");
+        const lotId = arg.lotId;
+        const startdate = arg.startdate;
+        const lot1 = await lot.findOne({ where: { LotId: lotId } });
+        lot1.LotStartDate = startdate;
+        lot1.save().then((updateLot) => {
+          console.log(updateLot.LotStartDate);
+          io.emit("StartedBid", {
+            date: updateLot.LotStartDate,
+            status: "live",
+          });
+          //   io.sockets.sockets
+          //     .get(reciID)
+          //     .emit("RecieveABid", lotone.bidders[0]);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    });
+
+    socket.on("EndABid", async (arg) => {
+      try {
+        console.log("Starting a Bid");
+        const lotId = arg.lotId;
+        const enddate = arg.enddate;
+        const lot1 = await lot.findOne({ where: { LotId: lotId } });
+        lot1.LotEndDate = enddate;
+        lot1.save().then((updateLot) => {
+          console.log(updateLot.LotEndDate);
+          io.emit("EndedBid", {
+            date: updateLot.LotEndDate,
+            status: "auctioned",
+          });
+          //   io.sockets.sockets
+          //     .get(reciID)
+          //     .emit("RecieveABid", lotone.bidders[0]);
+        });
       } catch (err) {
         console.log(err);
       }

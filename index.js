@@ -37,31 +37,30 @@ const db = require("./models");
 const { owner } = require("./models");
 const Role = db.role;
 
-db.sequelize.sync();
-// ({ alter: true }).then(() => {
-//   initial();
-// });
+db.sequelize.sync({ alter: true }).then(() => {
+  initial();
+});
 
-// function initial() {
-//   Role.create({
-//     id: 1,
-//     name: "user",
-//   });
+function initial() {
+  Role.create({
+    id: 1,
+    name: "user",
+  });
 
-//   Role.create({
-//     id: 2,
-//     name: "owner",
-//   });
+  Role.create({
+    id: 2,
+    name: "owner",
+  });
 
-//   Role.create({
-//     id: 3,
-//     name: "officer",
-//   });
-//   Role.create({
-//     id: 4,
-//     name: "bidder",
-//   });
-// }
+  Role.create({
+    id: 3,
+    name: "officer",
+  });
+  Role.create({
+    id: 4,
+    name: "bidder",
+  });
+}
 
 app.use("/fishermen", fishermenRoute);
 app.use("/boat", boatRoute);
@@ -82,7 +81,7 @@ require("./routes/user.routes")(app);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://karadiya-dashboard.web.app",
   },
 });
 const controller = require("./controllers/socket.controller");

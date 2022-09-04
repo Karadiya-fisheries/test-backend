@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     NotificationType: {
       type: DataTypes.STRING,
     },
+    NotificationReci: {
+      type: DataTypes.STRING,
+    },
   });
 
   return Notification;
