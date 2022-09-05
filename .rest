@@ -125,7 +125,7 @@ Content-Type: application/json
 GET http://localhost:5000/stat/daily/catch
 
 ###
-GET http://localhost:5000/catch/
+GET  https://serene-woodland-83390.herokuapp.com/triplog/1
 
 ###
 POST https://serene-woodland-83390.herokuapp.com/catch/
