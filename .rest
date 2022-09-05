@@ -294,12 +294,12 @@ POST http://localhost:5000/bidder/
 Content-Type: application/json
 
 {
-    "uid": "16",
+    "uid": "4",
     "nic": "9809800V",
-    "GNDivision": "hapugala",
-    "District": "Galle",
+    "GNDivision": "Gampaha",
+    "District": "Gampaha",
     "TypeOfBusiness": "Export",
-    "BusinessName": "Fisheyr"
+    "BusinessName": "FisheryDelight"
 }
 
 ###

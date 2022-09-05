@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 // create catch
 router.post("/", (req, res) => {
   TripLog.findOne({
-    tripId: req.body.TripID,
+    where: { tripId: req.body.tripId },
   }).then((log) => {
     Catch.create({
       triplogTripId: log.tripId,
