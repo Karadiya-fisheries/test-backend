@@ -37,7 +37,7 @@ const db = require("./models");
 const { owner } = require("./models");
 const Role = db.role;
 
-db.sequelize.sync({ alter: true }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   initial();
 });
 
@@ -81,7 +81,10 @@ require("./routes/user.routes")(app);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://karadiya-dashboard.web.app",
+    origin: [
+      "https://karadiya-dashboard.web.app",
+      "https://karadiya-store.web.app",
+    ],
   },
 });
 const controller = require("./controllers/socket.controller");

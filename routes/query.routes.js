@@ -78,4 +78,41 @@ router.get("/pending/departure/count", async (req, res) => {
     });
 });
 
+router.get("/daily/catch", async (req, res) => {
+  Catch.count({
+    group: ["createdAt"],
+  })
+    .then((count) => {
+      res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message : " + error);
+    });
+});
+
+router.get("/daily/triplog", async (req, res) => {
+  TripLog.count({
+    seperated: "true",
+    group: ["createdAt"],
+  })
+    .then((count) => {
+      res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message : " + error);
+    });
+});
+
+router.get("/daily/departure", async (req, res) => {
+  Departure.count({
+    group: ["createdAt"],
+  })
+    .then((count) => {
+      res.json(count);
+    })
+    .catch((error) => {
+      res.status(400).json("message : " + error);
+    });
+});
+
 module.exports = router;

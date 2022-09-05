@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const { boat, user } = require("../models");
+const { boat, user, departure, triplog } = require("../models");
 const db = require("../models");
+const boatModel = require("../models/boat.model");
 const Owner = db.owner;
 
 router.get("/boat/:id", async (req, res) => {
@@ -12,6 +13,54 @@ router.get("/boat/:id", async (req, res) => {
   })
     .then((Owner) => {
       res.json(Owner);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
+router.get("/departure/:id", async (req, res) => {
+  Owner.findOne({
+    where: {
+      userUid: req.params.id,
+    },
+    include: [
+      {
+        model: boat,
+        include: [
+          {
+            model: departure,
+          },
+        ],
+      },
+    ],
+  })
+    .then((Owner) => {
+      res.json(Owner.boats);
+    })
+    .catch((error) => {
+      res.status(400).json("message :" + error);
+    });
+});
+
+router.get("/triplog/:id", async (req, res) => {
+  Owner.findOne({
+    where: {
+      userUid: req.params.id,
+    },
+    include: [
+      {
+        model: boat,
+        include: [
+          {
+            model: triplog,
+          },
+        ],
+      },
+    ],
+  })
+    .then((Owner) => {
+      res.json(Owner.boats);
     })
     .catch((error) => {
       res.status(400).json("message :" + error);

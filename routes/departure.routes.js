@@ -2,6 +2,10 @@ const router = require("express").Router();
 const db = require("../models");
 const Departure = db.departure;
 const Boat = db.boat;
+const owner = db.owner;
+const user = db.user;
+const config = require("../config/auth.config");
+
 router.get("/", async (req, res) => {
   Departure.findAll({ order: [["DepartureId"]] })
     .then((departure) => {
@@ -9,6 +13,150 @@ router.get("/", async (req, res) => {
     })
     .catch((error) => {
       res.status(400).json("message :" + error);
+    });
+});
+
+router.patch("/accept/:id", async (req, res) => {
+  Departure.findByPk(req.params.id)
+    .then((record) => {
+      (record.confirm = req.body.confirm),
+        record.save().then((updateDeparture) => {
+          Boat.findOne({
+            attributes: ["BoatName"],
+            where: {
+              BoatRg: updateDeparture.Imul,
+            },
+            include: [
+              {
+                attributes: ["OwnerId"],
+                model: owner,
+                include: [
+                  {
+                    model: user,
+                    attributes: ["email", "fullname", "profileUrl"],
+                  },
+                ],
+              },
+            ],
+          }).then((boat) => {
+            config.transporter.sendMail(
+              {
+                from: "7tharindugalle@gmail.com",
+                to: boat.owner.user.email,
+                subject: "Regarding Departure Request - Karadiya",
+                html: `
+              <html>
+              <head>
+                <style>
+                body {background-color: #DBDFFD;}
+                  p ,li {font-family: "tahoma";}
+                  h2 {font-family: "Helvetica"}
+                  b {color: #242F9B}
+                </style>
+              </head>
+              <body>
+
+              <h2>Trip Log "${boat.BoatName}"</h2>
+              <h5>Dear, Mr."${boat.owner.user.fullname}"</h5>
+                        <p>We've sent this message to inform you that the boat you owned called "${boat.BoatName}" has submitted Requset for Departure Approval</p>
+                                  <p> And It has been accepted by the fishery officers, You can view the Approval request in your dashboard </p>
+                                  <hr>
+                                  <p>If you have any further inquiries, Please inform us!</p>
+
+              </body>
+              </html>
+              `,
+              },
+              (error, info) => {
+                if (error) {
+                  return console.log(error);
+                }
+                console.log(
+                  "Message %s sent: %s",
+                  info.messageId,
+                  info.response
+                );
+              }
+            );
+            res.json(boat);
+          });
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json({ message: err });
+    });
+});
+
+router.patch("/reject/:id", async (req, res) => {
+  Departure.findByPk(req.params.id)
+    .then((record) => {
+      (record.confirm = req.body.confirm),
+        record.save().then((updateDeparture) => {
+          Boat.findOne({
+            attributes: ["BoatName"],
+            where: {
+              BoatRg: updateDeparture.Imul,
+            },
+            include: [
+              {
+                attributes: ["OwnerId"],
+                model: owner,
+                include: [
+                  {
+                    model: user,
+                    attributes: ["email", "fullname", "profileUrl"],
+                  },
+                ],
+              },
+            ],
+          }).then((boat) => {
+            config.transporter.sendMail(
+              {
+                from: "7tharindugalle@gmail.com",
+                to: boat.owner.user.email,
+                subject: "Regarding Departure Request - Karadiya",
+                html: `
+              <html>
+              <head>
+                <style>
+                body {background-color: #DBDFFD;}
+                  p ,li {font-family: "tahoma";}
+                  h2 {font-family: "Helvetica"}
+                  b {color: #242F9B}
+                </style>
+              </head>
+              <body>
+
+              <h2>Trip Log "${boat.BoatName}"</h2>
+              <h5>Dear, Mr."${boat.owner.user.fullname}"</h5>
+                        <p>We've sent this message to inform you that the boat you owned called "${boat.BoatName}" has submitted Requset for Departure Approval</p>
+                                  <p> And It has been rejected by the fishery officers, You can view the Approval request in your dashboard </p>
+                                  <hr>
+                                  <p>If you have any further inquiries, Please inform us!</p>
+
+              </body>
+              </html>
+              `,
+              },
+              (error, info) => {
+                if (error) {
+                  return console.log(error);
+                }
+                console.log(
+                  "Message %s sent: %s",
+                  info.messageId,
+                  info.response
+                );
+              }
+            );
+            res.json(boat);
+          });
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json({ message: err });
     });
 });
 
