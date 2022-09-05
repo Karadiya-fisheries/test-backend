@@ -228,7 +228,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const deletedboat = await TripLog.destroy({
       where: {
-        fishermenId: id,
+        tripId: id,
       },
     });
     res.status(201).json(deletedboat);

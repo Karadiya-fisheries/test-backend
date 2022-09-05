@@ -107,10 +107,10 @@ POST https://serene-woodland-83390.herokuapp.com/triplog/
 Content-Type: application/json
 
 {
-      "WesselID": "IMUL-1245-GLE",
-      "SkipperID": "1",
-      "Harbor": "Matara",
-      "DepartureDate": "2022-07-30",
+      "WesselID": "IMUL-45",
+      "SkipperID": "5656",
+      "Harbor": "Mirissa",
+      "DepartureDate": "2022-09-05",
       "DepartureTime": "04:19:30",
       "GearType": "",
       "MainLine": "200",
@@ -125,14 +125,14 @@ Content-Type: application/json
 GET http://localhost:5000/stat/daily/catch
 
 ###
-GET  https://serene-woodland-83390.herokuapp.com/triplog/1
+DELETE https://serene-woodland-83390.herokuapp.com/triplog/15
 
 ###
 POST https://serene-woodland-83390.herokuapp.com/catch/
 Content-Type: application/json
 
 {
-      "tripId": "1",
+      "tripId": "16",
       "FishingDate": "2022-07-1",
       "FishingTime": "20:02:44",
       "GPSPoint": {
@@ -290,7 +290,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/bidder/
+POST https://serene-woodland-83390.herokuapp.com/bidder/
 Content-Type: application/json
 
 {
