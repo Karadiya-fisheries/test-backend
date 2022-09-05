@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  TripLog.findOne({ include: catchModel })
+  TripLog.findOne({ include: { all: true } })
     .then((record) => {
       res.json(record);
     })

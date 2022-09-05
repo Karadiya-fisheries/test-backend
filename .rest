@@ -103,11 +103,11 @@ Content-Type: application/json
 GET http://localhost:5000/triplog/1
 
 ###
-POST http://localhost:5000/triplog/
+POST https://serene-woodland-83390.herokuapp.com/triplog/
 Content-Type: application/json
 
 {
-      "WesselID": "IMUL-456",
+      "WesselID": "IMUL-1245-GLE",
       "SkipperID": "1",
       "Harbor": "Matara",
       "DepartureDate": "2022-07-30",
@@ -116,7 +116,7 @@ Content-Type: application/json
       "MainLine": "200",
       "BranchLine": "100",
       "HookNo": "100",
-      "HookTypes": "large",
+      "HookType": "large",
       "Depth": "10",
       "Bait": "squid"
 }
@@ -128,22 +128,22 @@ GET http://localhost:5000/stat/daily/catch
 GET http://localhost:5000/catch/
 
 ###
-POST http://localhost:5000/catch/
+POST https://serene-woodland-83390.herokuapp.com/catch/
 Content-Type: application/json
 
 {
-      "tripId": "4",
+      "tripId": "1",
       "FishingDate": "2022-07-1",
       "FishingTime": "20:02:44",
       "GPSPoint": {
-        "start":{"long": "80.3845",
-        "lat": "70"},
+        "start":{"long": "91.3845",
+        "lat": "70.8489"},
         "end": {
-            "long": "80",
+            "long": "89.979",
         "lat": "6.99"
         }
       },
-      "Catch": [{"FishType": "SpearFish","FishSubType": "BlueFin", "Qty": "30", "Weight": "100"},{"FishType": "Tuna","FishSubType": "YellowFine", "Qty": "20", "Weight": "50"}]
+      "Catch": [{"FishType": "Tuna","FishSubType": "Blue Fin", "Qty": "55", "Weight": "150"},{"FishType": "Tuna","FishSubType": "Yellow Fin", "Qty": "25", "Weight": "80"}]
 }
 
 ###
