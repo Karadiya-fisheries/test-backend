@@ -111,7 +111,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const deletedFishermen = await Fishermen.destroy({
       where: {
-        fishermenId: id,
+        FishermenId: id,
       },
     });
     res.status(201).json(deletedFishermen);
